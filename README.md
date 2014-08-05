@@ -54,6 +54,20 @@ You can change the position of the off-canvas nav by adding the following class
 navbar-offcanvas-right
 ```
 
+### Touch events
+
+It is possible to add touch events to swipe the menu in and out by simply adding the following class to the navigation HTML element.
+
+```
+navbar-offcanvas-touch
+```
+
+**NOTE**
+This will only add to the first found off-canvas menu for now. At some point in the future I might make it be able to handle more than element.
+However, just for now it will take the first off-canvas menu with the class `navbar-offcanvas-touch` and presume this should have touch events.
+
+iOS7+ does have a gesture to swipe the page back and forward, and a threshold has been put in. This might not be perfect, and might need tweaking.
+
 ## Running example
 
 Run the below commands to install all dependencies and then just open the index.html file in example/
@@ -83,6 +97,7 @@ There is one media query and this uses the Bootstrap `$screen-sm` variable. If t
 ## Todo
 
 - [ ] Style dropdown menus
-- [ ] Fade out content behind off canvas menu when pulled out
+- [ ] ~~Fade out content behind off canvas menu when pulled out~~ - This has been decided against. If required, please open an issue.
 - [ ] Different transitions and animations when pulling out and hiding
-- [ ] Swipe to pull menu out
+- [x] Swipe to pull menu out
+- [ ] Multiple touch events
