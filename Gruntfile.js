@@ -61,6 +61,9 @@ module.exports = function(grunt) {
                     "dist/js/bootstrap.offcanvas.min.js": ["dist/js/bootstrap.offcanvas.js"]
                 }
             }
+        },
+        qunit: {
+            all: ["tests/*.html"]
         }
     });
 
@@ -69,7 +72,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
 
     // Grunt tasks
     grunt.registerTask("default", ["watch"]);
+    grunt.registerTask("tests", ['qunit']);
 };

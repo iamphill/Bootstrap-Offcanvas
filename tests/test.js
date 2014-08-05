@@ -1,16 +1,16 @@
-QUnit.test("Show off-canvas menu test", function (assert) {
+test("Show off-canvas menu test", function (assert) {
     $("#offcanvas-toggle").trigger("click");
 
     assert.ok($("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should be visible");
 });
 
-QUnit.test("Hide off-canvas menu test", function (assert) {
+test("Hide off-canvas menu test", function (assert) {
     $("#offcanvas-toggle").trigger("click");
 
     assert.ok(!$("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should be hidden");
 });
 
-QUnit.test("Body click hide off-canvas menu test", function (assert) {
+test("Body click hide off-canvas menu test", function (assert) {
     $("#offcanvas-toggle").trigger("click");
     assert.ok($("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should be visible");
 
@@ -18,7 +18,7 @@ QUnit.test("Body click hide off-canvas menu test", function (assert) {
     assert.ok(!$("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should be hidden");
 });
 
-QUnit.test("Dropdown test", function (assert) {
+test("Dropdown test", function (assert) {
     $("#js-dropdown-test").trigger("click");
 
     assert.ok($("#js-dropdown-test").parent().hasClass("active"), "Dropdown menu should be visible");
