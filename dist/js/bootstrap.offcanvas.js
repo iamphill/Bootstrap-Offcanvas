@@ -30,6 +30,7 @@
     OffcanvasTouch.prototype._touchMove = function(e) {
       var x;
       if (this.startX > this.startThreshold && this.startX < this.maxStartThreshold) {
+        this.offcanvas.bodyOverflow();
         x = e.originalEvent.touches[0].pageX - this.startX;
         x = this.element.hasClass('navbar-offcanvas-right') ? -x : x;
         if (Math.abs(x) < this.element.outerWidth()) {
