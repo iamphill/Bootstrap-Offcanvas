@@ -156,6 +156,7 @@
     Offcanvas.prototype._clicked = function(e) {
       e.preventDefault();
       this._sendEventsBefore();
+      $(".navbar-offcanvas").removeClass('in');
       this.target.toggleClass('in');
       return this.bodyOverflow();
     };

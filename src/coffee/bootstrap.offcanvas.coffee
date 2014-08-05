@@ -184,6 +184,9 @@ class Offcanvas
 
         @_sendEventsBefore()
 
+        # Hide all other off canvas menus
+        $(".navbar-offcanvas").removeClass 'in'
+
         # Toggle in class
         @target.toggleClass 'in'
         @bodyOverflow()
