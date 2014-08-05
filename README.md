@@ -8,6 +8,12 @@ It uses Bootstrap classes and markup to create an off-canvas menu that not only 
 
 ## Installation
 
+Available to download through Bower
+
+```
+bower install bootstrap-offcanvas
+```
+
 Add the stylehseet from the **dist** folder to your HTML document.
 
 ```html
