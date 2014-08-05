@@ -35,7 +35,8 @@ class OffcanvasTouch
     #   e - Event target
     _touchMove: (e) =>
         if @startX > @startThreshold and @startX < @maxStartThreshold
-            @offcanvas.bodyOverflow()
+            $("body").css
+                "overflow": "hidden"
 
             x = e.originalEvent.touches[0].pageX - @startX
             x = if @element.hasClass 'navbar-offcanvas-right' then -x else x
