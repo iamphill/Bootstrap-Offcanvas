@@ -125,6 +125,10 @@ $offcanvas-toggle-bars-color: #000 !default; // Colour for icon bars in toggle
 
 There is one media query and this uses the Bootstrap `$screen-sm` variable. If this isn't present, then the width of `768px` is used for the breakpoint.
 
+## Tests
+
+Open [tests/index.html](https://github.com/iamphill/Bootstrap-Offcanvas/blob/master/tests/index.html) to run the tests.
+
 ## Todo
 
 - [x] Style dropdown menus
