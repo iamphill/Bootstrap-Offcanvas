@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Bootstrap Off-Canvas by iamphill</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Bootstrap Off-Canvas</h1>
+        <h2>Off-Canvas menu built with Bootstrap</h2>
+        <a href="https://github.com/iamphill/Bootstrap-Offcanvas" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="bootstrap-offcanvas" class="anchor" href="#bootstrap-offcanvas"><span class="octicon octicon-link"></span></a>Bootstrap Offcanvas</h1>
+
+<p>Super simple, easy to use off-canvas navigation menu for Bootstrap.</p>
+
+<p>It uses Bootstrap classes and markup to create an off-canvas menu that not only looks good. But works perfectly.</p>
+
+<p><img src="https://github.com/iamphill/Bootstrap-Offcanvas/blob/master/screencap.gif" alt="Screencap showing off-canvas menu"></p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add the stylehseet from the <strong>dist</strong> folder to your HTML document.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"../dist/css/bootstrap.offcanvas.min.css"</span><span class="nt">/&gt;</span>
+</pre></div>
+
+<p>Add the JavaScript from the <strong>dist</strong> folder to your HTML document.</p>
+
+<p><strong>NOTE: Ensure that jQuery is also present. Otherwise this won't work</strong></p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"../dist/js/bootstrap.offcanvas.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<p>In the HTML itself there needs to a button or something to trigger the menu.
+<strong>NOTE: It can be ANY HTML element</strong></p>
+
+<p>The below example is the exact same markup as from the Bootstrap docs. The only differences are the <code>data-toggle</code>, <code>data-target</code> attributes and <code>offcanvas-toggle</code> class.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"navbar-toggle offcanvas-toggle"</span> <span class="na">data-toggle=</span><span class="s">"offcanvas"</span> <span class="na">data-target=</span><span class="s">"#js-bootstrap-offcanvas"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Toggle navigation<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon-bar"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon-bar"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"icon-bar"</span><span class="nt">&gt;&lt;/span&gt;</span>
+<span class="nt">&lt;/button&gt;</span>
+</pre></div>
+
+<p>Finally, the nav HTML should be as follows. The only things needed are:</p>
+
+<ul>
+<li>The class <code>navbar-offcanvas</code>
+</li>
+<li>The selector that is specified in the <code>data-target</code> of the toggle. Example below uses an ID.
+<strong>NOTE: This can also be any element as long as the classes and attributes are correct</strong>
+</li>
+</ul><div class="highlight highlight-html"><pre><span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"navbar navbar-default navbar-offcanvas"</span> <span class="na">role=</span><span class="s">"navigation"</span> <span class="na">id=</span><span class="s">"js-bootstrap-offcanvas"</span><span class="nt">&gt;</span>
+    ...
+<span class="nt">&lt;/nav&gt;</span>
+</pre></div>
+
+<p>You can change the position of the off-canvas nav by adding the following class</p>
+
+<pre><code>navbar-offcanvas-right
+</code></pre>
+
+<h2>
+<a name="running-example" class="anchor" href="#running-example"><span class="octicon octicon-link"></span></a>Running example</h2>
+
+<p>Run the below commands to install all dependencies and then just open the index.html file in example/</p>
+
+<pre><code>npm install
+bower install
+</code></pre>
+
+<h2>
+<a name="customizing" class="anchor" href="#customizing"><span class="octicon octicon-link"></span></a>Customizing</h2>
+
+<p>Its possible to customize to your needs by using SASS.</p>
+
+<p>Want to include with your Bootstrap SASS? Copy across the files in src/sass.</p>
+
+<p>The SASS files use a few variables. These are explained below.</p>
+
+<div class="highlight highlight-sass"><pre><span class="na">$offcanvas-width</span><span class="o">:</span> <span class="mi">250</span><span class="kt">px</span> <span class="nv">!default</span><span class="err">;</span> <span class="c1">// The width of the offcanvas menu</span>
+<span class="na">$offcanvas-animation-time</span><span class="o">:</span> <span class="mi">0</span><span class="mf">.15</span><span class="kt">s</span> <span class="nv">!default</span><span class="err">;</span> <span class="c1">// Transition time to pull/hide menu</span>
+<span class="na">$offcanvas-toggle-background</span><span class="o">:</span> <span class="mh">#f8f8f8</span> <span class="nv">!default</span><span class="err">;</span> <span class="c1">// Background colour for toggle</span>
+<span class="na">$offcanvas-toggle-bars-color</span><span class="o">:</span> <span class="mh">#000</span> <span class="nv">!default</span><span class="err">;</span> <span class="c1">// Colour for icon bars in toggle</span>
+</pre></div>
+
+<p>There is one media query and this uses the Bootstrap <code>$screen-sm</code> variable. If this isn't present, then the width of <code>768px</code> is used for the breakpoint.</p>
+
+<h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>Todo</h2>
+
+<ul>
+<li>[ ] Fade out content behind off canvas menu when pulled out</li>
+<li>[ ] Different transitions and animations when pulling out and hiding</li>
+<li>[ ] Swipe to pull menu out</li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/iamphill/Bootstrap-Offcanvas/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/iamphill/Bootstrap-Offcanvas/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/iamphill/Bootstrap-Offcanvas"></a> is maintained by <a href="https://github.com/iamphill">iamphill</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
