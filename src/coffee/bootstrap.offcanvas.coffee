@@ -1,3 +1,104 @@
+# Only one navbar should have touch enabled
+# More than one would cause confusion on the page
+# This variable is true if touch is already enabled or false if not
+touch = false
+
+class OffcanvasTouch
+    #   Public: Constructor for offcanvas
+    #
+    #   @element - Element that toggles the offcanvas
+    #   @location - Location of offcanvas (Left/Right)
+    #   @offcanvas - Offcanvas class ref
+    constructor: (@element, @location, @offcanvas) ->
+        @endThreshold = 130
+        @startThreshold = 20
+        @maxStartThreshold = 60
+        @currentX = 0
+
+        # Add touch start event
+        $(document).on "touchstart", @_touchStart
+
+        # Add touch move event
+        $(document).on "touchmove", @_touchMove
+
+        # Add touch end event
+        $(document).on "touchend", @_touchEnd
+
+    #   Private: Touch start
+    #
+    #   e - Event target
+    _touchStart: (e) =>
+        @startX = e.originalEvent.touches[0].pageX
+
+    #   Private: Touch move
+    #
+    #   e - Event target
+    _touchMove: (e) =>
+        if @startX > @startThreshold and @startX < @maxStartThreshold
+            x = e.originalEvent.touches[0].pageX - @startX
+
+            if x < @element.outerWidth()
+                # Get CSS to move element
+                @element.css @_getCss x
+        else if @element.hasClass 'in'
+            x = e.originalEvent.touches[0].pageX + (@currentX - @startX)
+
+            if x < @element.outerWidth()
+                # Get CSS to move element
+                @element.css @_getCss x
+
+    #   Private: Touch end
+    #
+    #   e - Event target
+    _touchEnd: (e) =>
+        x = e.originalEvent.changedTouches[0].pageX
+
+        if @element.hasClass('in') and x < (@endThreshold + 50)
+            @currentX = 0
+
+            # Show or hide the element
+            @element.removeClass 'in'
+                .css @_clearCss()
+        else if x - @startX > @endThreshold and @startX > @startThreshold and @startX < @maxStartThreshold
+            @currentX = x
+
+            # Show or hide the element
+            @element.toggleClass 'in'
+                .css @_clearCss()
+        else
+            @element.css @_clearCss()
+
+        # Overflow on body element
+        @offcanvas.bodyOverflow()
+
+    #   Private: Get CSS
+    #
+    #   x - Location of touch
+    _getCss: (x) =>
+        {
+            "-webkit-transform": "translate3d(#{x}px, 0px, 0px)"
+            "-webkit-transition-duration": "0s"
+            "-moz-transform": "translate3d(#{x}px, 0px, 0px)"
+            "-moz-transition": "0s"
+            "-o-transform": "translate3d(#{x}px, 0px, 0px)"
+            "-o-transition": "0s"
+            "transform": "translate3d(#{x}px, 0px, 0px)"
+            "transition": "0s"
+        }
+
+    #   Private: Clear CSS properties
+    _clearCss: =>
+        {
+            "-webkit-transform": ""
+            "-webkit-transition-duration": ""
+            "-moz-transform": ""
+            "-moz-transition": ""
+            "-o-transform": ""
+            "-o-transition": ""
+            "transform": ""
+            "transition": ""
+        }
+
 class Offcanvas
     #   Public: Constructor for offcanvas
     #
@@ -23,6 +124,13 @@ class Offcanvas
 
                 # Click event on document
                 $(document).on "click", @_documentClicked
+
+                # Should touch be added to this target
+                if @target.hasClass 'navbar-offcanvas-touch'
+                    touch = true
+
+                    # Create touch class
+                    t = new OffcanvasTouch @target, @location, @
             else
                 # Log a warning
                 console.warn "Offcanvas: Can't find target element with selector #{target}."
@@ -38,6 +146,7 @@ class Offcanvas
 
         # Toggle in class
         @target.toggleClass 'in'
+        @bodyOverflow()
 
     #   Private: Document click event to hide offcanvas
     #
@@ -50,6 +159,12 @@ class Offcanvas
             if @target.hasClass 'in'
                 e.preventDefault()
                 @target.removeClass 'in'
+                @bodyOverflow()
+
+    #   Public: Overflow on body
+    bodyOverflow: =>
+        $("body").css
+            overflow: if @target.hasClass 'in' then 'hidden' else ''
 
 
 #   Transform checker
