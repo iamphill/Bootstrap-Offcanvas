@@ -82,6 +82,7 @@ There is one media query and this uses the Bootstrap `$screen-sm` variable. If t
 
 ## Todo
 
+- [ ] Style dropdown menus
 - [ ] Fade out content behind off canvas menu when pulled out
 - [ ] Different transitions and animations when pulling out and hiding
 - [ ] Swipe to pull menu out
