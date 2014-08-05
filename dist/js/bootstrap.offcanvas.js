@@ -29,16 +29,18 @@
 
     OffcanvasTouch.prototype._touchMove = function(e) {
       var x;
+      if ($(e.target).parents('.navbar-offcanvas').length > 0) {
+        return false;
+      }
       if (this.startX > this.startThreshold && this.startX < this.maxStartThreshold) {
-        $("body").css({
-          "overflow": "hidden"
-        });
+        e.preventDefault();
         x = e.originalEvent.touches[0].pageX - this.startX;
         x = this.element.hasClass('navbar-offcanvas-right') ? -x : x;
         if (Math.abs(x) < this.element.outerWidth()) {
           return this.element.css(this._getCss(x));
         }
       } else if (this.element.hasClass('in')) {
+        e.preventDefault();
         x = e.originalEvent.touches[0].pageX + (this.currentX - this.startX);
         x = this.element.hasClass('navbar-offcanvas-right') ? -x : x;
         if (Math.abs(x) < this.element.outerWidth()) {
@@ -49,6 +51,9 @@
 
     OffcanvasTouch.prototype._touchEnd = function(e) {
       var end, x;
+      if ($(e.target).parents('.navbar-offcanvas').length > 0) {
+        return false;
+      }
       x = e.originalEvent.changedTouches[0].pageX;
       end = this.element.hasClass('navbar-offcanvas-right') ? Math.abs(x) > (this.endThreshold + 50) : x < (this.endThreshold + 50);
       if (this.element.hasClass('in') && end) {

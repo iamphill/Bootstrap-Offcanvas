@@ -34,9 +34,10 @@ class OffcanvasTouch
     #
     #   e - Event target
     _touchMove: (e) =>
+        return false if $(e.target).parents('.navbar-offcanvas').length > 0
+
         if @startX > @startThreshold and @startX < @maxStartThreshold
-            $("body").css
-                "overflow": "hidden"
+            e.preventDefault()
 
             x = e.originalEvent.touches[0].pageX - @startX
             x = if @element.hasClass 'navbar-offcanvas-right' then -x else x
@@ -45,6 +46,8 @@ class OffcanvasTouch
                 # Get CSS to move element
                 @element.css @_getCss x
         else if @element.hasClass 'in'
+            e.preventDefault()
+
             x = e.originalEvent.touches[0].pageX + (@currentX - @startX)
             x = if @element.hasClass 'navbar-offcanvas-right' then -x else x
 
@@ -56,6 +59,8 @@ class OffcanvasTouch
     #
     #   e - Event target
     _touchEnd: (e) =>
+        return false if $(e.target).parents('.navbar-offcanvas').length > 0
+
         x = e.originalEvent.changedTouches[0].pageX
         end = if @element.hasClass 'navbar-offcanvas-right' then Math.abs(x) > (@endThreshold + 50) else x < (@endThreshold + 50)
 

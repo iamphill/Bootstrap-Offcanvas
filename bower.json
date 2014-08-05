@@ -1,8 +1,8 @@
 {
   "name": "bootstrap-offcanvas",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
-    "Phil Hughes <theephil@gmail.com>"
+    "Phil Hughes <me@iamphill.com>"
   ],
   "license": "MIT",
   "ignore": [
