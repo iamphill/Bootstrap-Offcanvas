@@ -15,8 +15,8 @@
       this._touchMove = __bind(this._touchMove, this);
       this._touchStart = __bind(this._touchStart, this);
       this.endThreshold = 130;
-      this.startThreshold = 20;
-      this.maxStartThreshold = 60;
+      this.startThreshold = this.element.hasClass('navbar-offcanvas-right') ? $("body").outerWidth() - 60 : 20;
+      this.maxStartThreshold = this.element.hasClass('navbar-offcanvas-right') ? $("body").outerWidth() - 20 : 60;
       this.currentX = 0;
       $(document).on("touchstart", this._touchStart);
       $(document).on("touchmove", this._touchMove);
@@ -31,25 +31,28 @@
       var x;
       if (this.startX > this.startThreshold && this.startX < this.maxStartThreshold) {
         x = e.originalEvent.touches[0].pageX - this.startX;
-        if (x < this.element.outerWidth()) {
+        x = this.element.hasClass('navbar-offcanvas-right') ? -x : x;
+        if (Math.abs(x) < this.element.outerWidth()) {
           return this.element.css(this._getCss(x));
         }
       } else if (this.element.hasClass('in')) {
         x = e.originalEvent.touches[0].pageX + (this.currentX - this.startX);
-        if (x < this.element.outerWidth()) {
+        x = this.element.hasClass('navbar-offcanvas-right') ? -x : x;
+        if (Math.abs(x) < this.element.outerWidth()) {
           return this.element.css(this._getCss(x));
         }
       }
     };
 
     OffcanvasTouch.prototype._touchEnd = function(e) {
-      var x;
+      var end, x;
       x = e.originalEvent.changedTouches[0].pageX;
-      if (this.element.hasClass('in') && x < (this.endThreshold + 50)) {
+      end = this.element.hasClass('navbar-offcanvas-right') ? Math.abs(x) > (this.endThreshold + 50) : x < (this.endThreshold + 50);
+      if (this.element.hasClass('in') && end) {
         this.currentX = 0;
         this.element.removeClass('in').css(this._clearCss());
-      } else if (x - this.startX > this.endThreshold && this.startX > this.startThreshold && this.startX < this.maxStartThreshold) {
-        this.currentX = x;
+      } else if (Math.abs(x - this.startX) > this.endThreshold && this.startX > this.startThreshold && this.startX < this.maxStartThreshold) {
+        this.currentX = this.element.hasClass('navbar-offcanvas-right') ? -this.element.outerWidth() : this.element.outerWidth();
         this.element.toggleClass('in').css(this._clearCss());
       } else {
         this.element.css(this._clearCss());
@@ -58,6 +61,7 @@
     };
 
     OffcanvasTouch.prototype._getCss = function(x) {
+      x = this.element.hasClass('navbar-offcanvas-right') ? -x : x;
       return {
         "-webkit-transform": "translate3d(" + x + "px, 0px, 0px)",
         "-webkit-transition-duration": "0s",

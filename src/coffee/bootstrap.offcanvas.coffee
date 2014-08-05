@@ -11,8 +11,8 @@ class OffcanvasTouch
     #   @offcanvas - Offcanvas class ref
     constructor: (@element, @location, @offcanvas) ->
         @endThreshold = 130
-        @startThreshold = 20
-        @maxStartThreshold = 60
+        @startThreshold = if @element.hasClass 'navbar-offcanvas-right' then $("body").outerWidth() - 60 else 20
+        @maxStartThreshold = if @element.hasClass 'navbar-offcanvas-right' then $("body").outerWidth() - 20 else 60
         @currentX = 0
 
         # Add touch start event
@@ -34,16 +34,19 @@ class OffcanvasTouch
     #
     #   e - Event target
     _touchMove: (e) =>
+
         if @startX > @startThreshold and @startX < @maxStartThreshold
             x = e.originalEvent.touches[0].pageX - @startX
+            x = if @element.hasClass 'navbar-offcanvas-right' then -x else x
 
-            if x < @element.outerWidth()
+            if Math.abs(x) < @element.outerWidth()
                 # Get CSS to move element
                 @element.css @_getCss x
         else if @element.hasClass 'in'
             x = e.originalEvent.touches[0].pageX + (@currentX - @startX)
+            x = if @element.hasClass 'navbar-offcanvas-right' then -x else x
 
-            if x < @element.outerWidth()
+            if Math.abs(x) < @element.outerWidth()
                 # Get CSS to move element
                 @element.css @_getCss x
 
@@ -52,15 +55,16 @@ class OffcanvasTouch
     #   e - Event target
     _touchEnd: (e) =>
         x = e.originalEvent.changedTouches[0].pageX
+        end = if @element.hasClass 'navbar-offcanvas-right' then Math.abs(x) > (@endThreshold + 50) else x < (@endThreshold + 50)
 
-        if @element.hasClass('in') and x < (@endThreshold + 50)
+        if @element.hasClass('in') and end
             @currentX = 0
 
             # Show or hide the element
             @element.removeClass 'in'
                 .css @_clearCss()
-        else if x - @startX > @endThreshold and @startX > @startThreshold and @startX < @maxStartThreshold
-            @currentX = x
+        else if Math.abs(x - @startX) > @endThreshold and @startX > @startThreshold and @startX < @maxStartThreshold
+            @currentX = if @element.hasClass 'navbar-offcanvas-right' then -@element.outerWidth() else @element.outerWidth()
 
             # Show or hide the element
             @element.toggleClass 'in'
@@ -75,6 +79,8 @@ class OffcanvasTouch
     #
     #   x - Location of touch
     _getCss: (x) =>
+        x = if @element.hasClass 'navbar-offcanvas-right' then -x else x
+
         {
             "-webkit-transform": "translate3d(#{x}px, 0px, 0px)"
             "-webkit-transition-duration": "0s"
