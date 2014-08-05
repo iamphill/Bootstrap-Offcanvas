@@ -104,6 +104,8 @@
       var t, target;
       this.element = element;
       this.bodyOverflow = __bind(this.bodyOverflow, this);
+      this._sendEventsAfter = __bind(this._sendEventsAfter, this);
+      this._sendEventsBefore = __bind(this._sendEventsBefore, this);
       this._documentClicked = __bind(this._documentClicked, this);
       this._clicked = __bind(this._clicked, this);
       target = this.element.attr('data-target') ? this.element.attr('data-target') : false;
@@ -128,6 +130,7 @@
 
     Offcanvas.prototype._clicked = function(e) {
       e.preventDefault();
+      this._sendEventsBefore();
       this.target.toggleClass('in');
       return this.bodyOverflow();
     };
@@ -138,13 +141,31 @@
       if (!clickedEl.hasClass('offcanvas-toggle') && clickedEl.parents('.offcanvas-toggle').length === 0 && clickedEl.parents('.navbar-offcanvas').length === 0 && !clickedEl.hasClass('navbar-offcanvas')) {
         if (this.target.hasClass('in')) {
           e.preventDefault();
+          this._sendEventsBefore();
           this.target.removeClass('in');
           return this.bodyOverflow();
         }
       }
     };
 
+    Offcanvas.prototype._sendEventsBefore = function() {
+      if (this.target.hasClass('in')) {
+        return this.target.trigger('show.bs.offcanvas');
+      } else {
+        return this.target.trigger('hide.bs.offcanvas');
+      }
+    };
+
+    Offcanvas.prototype._sendEventsAfter = function() {
+      if (this.target.hasClass('in')) {
+        return this.target.trigger('shown.bs.offcanvas');
+      } else {
+        return this.target.trigger('hidden.bs.offcanvas');
+      }
+    };
+
     Offcanvas.prototype.bodyOverflow = function() {
+      this._sendEventsAfter();
       return $("body").css({
         overflow: this.target.hasClass('in') ? 'hidden' : ''
       });

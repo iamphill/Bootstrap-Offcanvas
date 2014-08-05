@@ -4,7 +4,7 @@ Super simple, easy to use off-canvas navigation menu for Bootstrap.
 
 It uses Bootstrap classes and markup to create an off-canvas menu that not only looks good. But works perfectly. Example can be found [here](http://iamphill.github.io/Bootstrap-Offcanvas/example.html).
 
-![Screencap showing off-canvas menu](screencap.gif)
+![Screencap showing off-canvas menu](https://raw.githubusercontent.com/iamphill/Bootstrap-Offcanvas/master/screencap.gif)
 
 ## Installation
 
@@ -67,6 +67,18 @@ This will only add to the first found off-canvas menu for now. At some point in 
 However, just for now it will take the first off-canvas menu with the class `navbar-offcanvas-touch` and presume this should have touch events.
 
 iOS7+ does have a gesture to swipe the page back and forward, and a threshold has been put in. This might not be perfect, and might need tweaking.
+
+## Events
+
+There are four different events that are triggered on the nav element. These follow the same syntax as the Official Bootstrap JS plugins.
+
+| Event Type               | Description                                 |
+| -------------     |:-------------:                        |
+| show.bs.offcanvas     | Fire before the offcanvas menu is shown   |
+| shown.bs.offcanvas    | Fire after the offcanvas menu is shown    |
+| hide.bs.offcanvas      | Fire before the offcanvas menu is hidden  |
+| hidden.bs.offcanvas    | Fire after the offcanvas menu is hidden   |
+
 
 ## Running example
 

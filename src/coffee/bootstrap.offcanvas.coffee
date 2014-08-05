@@ -157,6 +157,8 @@ class Offcanvas
     _clicked: (e) =>
         e.preventDefault()
 
+        @_sendEventsBefore()
+
         # Toggle in class
         @target.toggleClass 'in'
         @bodyOverflow()
@@ -171,11 +173,32 @@ class Offcanvas
         if !clickedEl.hasClass('offcanvas-toggle') and clickedEl.parents('.offcanvas-toggle').length is 0 and clickedEl.parents('.navbar-offcanvas').length is 0 and !clickedEl.hasClass('navbar-offcanvas')
             if @target.hasClass 'in'
                 e.preventDefault()
+
+                @_sendEventsBefore()
+
                 @target.removeClass 'in'
                 @bodyOverflow()
 
+    #   Private: Send before events
+    _sendEventsBefore: =>
+        # Send events
+        if @target.hasClass 'in'
+            @target.trigger 'show.bs.offcanvas'
+        else
+            @target.trigger 'hide.bs.offcanvas'
+
+    #   Private: Send after events
+    _sendEventsAfter: =>
+        # Send events
+        if @target.hasClass 'in'
+            @target.trigger 'shown.bs.offcanvas'
+        else
+            @target.trigger 'hidden.bs.offcanvas'
+
     #   Public: Overflow on body
     bodyOverflow: =>
+        @_sendEventsAfter()
+
         $("body").css
             overflow: if @target.hasClass 'in' then 'hidden' else ''
 
