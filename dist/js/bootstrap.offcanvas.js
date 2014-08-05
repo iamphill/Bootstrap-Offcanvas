@@ -1,8 +1,29 @@
 (function() {
-  var Offcanvas, OffcanvasTouch, touch, transformCheck,
+  var Offcanvas, OffcanvasDropdown, OffcanvasTouch, touch, transformCheck,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   touch = false;
+
+  OffcanvasDropdown = (function() {
+    function OffcanvasDropdown(element) {
+      this.element = element;
+      this._clickEvent = __bind(this._clickEvent, this);
+      this.element = $(this.element);
+      this.dropdown = this.element.parent().find(".dropdown-menu");
+      this.element.on('click', this._clickEvent);
+    }
+
+    OffcanvasDropdown.prototype._clickEvent = function(e) {
+      if (!this.dropdown.hasClass('shown')) {
+        e.preventDefault();
+      }
+      this.dropdown.toggleClass("shown");
+      return this.element.parent().toggleClass('active');
+    };
+
+    return OffcanvasDropdown;
+
+  })();
 
   OffcanvasTouch = (function() {
     function OffcanvasTouch(element, location, offcanvas) {
@@ -30,7 +51,7 @@
     OffcanvasTouch.prototype._touchMove = function(e) {
       var x;
       if ($(e.target).parents('.navbar-offcanvas').length > 0) {
-        return false;
+        return true;
       }
       if (this.startX > this.startThreshold && this.startX < this.maxStartThreshold) {
         e.preventDefault();
@@ -52,7 +73,7 @@
     OffcanvasTouch.prototype._touchEnd = function(e) {
       var end, x;
       if ($(e.target).parents('.navbar-offcanvas').length > 0) {
-        return false;
+        return true;
       }
       x = e.originalEvent.changedTouches[0].pageX;
       end = this.element.hasClass('navbar-offcanvas-right') ? Math.abs(x) > (this.endThreshold + 50) : x < (this.endThreshold + 50);
@@ -120,6 +141,10 @@
             touch = true;
             t = new OffcanvasTouch(this.target, this.location, this);
           }
+          this.target.find(".dropdown-toggle").each(function() {
+            var d;
+            return d = new OffcanvasDropdown(this);
+          });
         } else {
           console.warn("Offcanvas: Can't find target element with selector " + target + ".");
         }

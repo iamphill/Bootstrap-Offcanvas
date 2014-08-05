@@ -15,7 +15,7 @@ module.exports = function(grunt) {
             },
             coffee: {
                 files: ["src/coffee/*.coffee"],
-                tasks: ["coffee"],
+                tasks: ["coffee", "uglify:js"],
                 options: {
                     livereload: true
                 }
@@ -51,6 +51,16 @@ module.exports = function(grunt) {
                     "dist/js/bootstrap.offcanvas.js": "src/coffee/bootstrap.offcanvas.coffee"
                 }
             }
+        },
+        uglify: {
+            js: {
+                options: {
+                    banner: "/*\n" + grunt.file.read("LICENSE") + "*/\n"
+                },
+                files: {
+                    "dist/js/bootstrap.offcanvas.min.js": ["dist/js/bootstrap.offcanvas.js"]
+                }
+            }
         }
     });
 
@@ -58,6 +68,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-coffee');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Grunt tasks
     grunt.registerTask("default", ["watch"]);

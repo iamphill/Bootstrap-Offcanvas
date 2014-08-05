@@ -32,7 +32,29 @@
         transform: translate3d(-250px, 0px, 0px); }
       .navbar-offcanvas.navbar-offcanvas-right.offcanvas-position.in {
         left: auto;
-        right: 0px; } }
+        right: 0px; }
+    .navbar-offcanvas .dropdown.active .caret {
+      border-top: 0px;
+      border-bottom: 4px solid; }
+    .navbar-offcanvas .dropdown-menu {
+      position: relative;
+      display: block;
+      width: 100%;
+      background: inherit;
+      border: inherit;
+      box-shadow: none;
+      padding: 0px;
+      overflow: hidden;
+      -webkit-transition: all 0.15s ease-in;
+      -moz-transition: all 0.15s ease-in;
+      -o-transition: all 0.15s ease-in;
+      transition: all 0.15s ease-in;
+      height: 0px; }
+      .navbar-offcanvas .dropdown-menu.shown {
+        height: auto; }
+      .navbar-offcanvas .dropdown-menu > li > a {
+        color: #777;
+        padding: 5px 15px 5px 30px; } }
 
 .offcanvas-toggle {
   background: #f8f8f8; }

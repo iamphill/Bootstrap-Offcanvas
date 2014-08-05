@@ -3,6 +3,27 @@
 # This variable is true if touch is already enabled or false if not
 touch = false
 
+class OffcanvasDropdown
+    #   Public: Constructor for offcanvas
+    #
+    #   @element - Element that toggles the offcanvas
+    constructor: (@element) ->
+        @element = $ @element
+
+        # Get dropdown element
+        @dropdown = @element.parent().find ".dropdown-menu"
+
+        # Click event
+        @element.on 'click', @_clickEvent
+
+    #   Private: Click event on link
+    _clickEvent: (e) =>
+        e.preventDefault() if !@dropdown.hasClass 'shown'
+
+        # Show or hide element
+        @dropdown.toggleClass "shown"
+        @element.parent().toggleClass 'active'
+
 class OffcanvasTouch
     #   Public: Constructor for offcanvas
     #
@@ -34,7 +55,7 @@ class OffcanvasTouch
     #
     #   e - Event target
     _touchMove: (e) =>
-        return false if $(e.target).parents('.navbar-offcanvas').length > 0
+        return true if $(e.target).parents('.navbar-offcanvas').length > 0
 
         if @startX > @startThreshold and @startX < @maxStartThreshold
             e.preventDefault()
@@ -59,7 +80,7 @@ class OffcanvasTouch
     #
     #   e - Event target
     _touchEnd: (e) =>
-        return false if $(e.target).parents('.navbar-offcanvas').length > 0
+        return true if $(e.target).parents('.navbar-offcanvas').length > 0
 
         x = e.originalEvent.changedTouches[0].pageX
         end = if @element.hasClass 'navbar-offcanvas-right' then Math.abs(x) > (@endThreshold + 50) else x < (@endThreshold + 50)
@@ -144,6 +165,10 @@ class Offcanvas
 
                     # Create touch class
                     t = new OffcanvasTouch @target, @location, @
+
+                # Get all dropdown menu links and create a class for them
+                @target.find(".dropdown-toggle").each ->
+                    d = new OffcanvasDropdown @
             else
                 # Log a warning
                 console.warn "Offcanvas: Can't find target element with selector #{target}."

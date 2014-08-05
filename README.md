@@ -54,6 +54,25 @@ You can change the position of the off-canvas nav by adding the following class
 navbar-offcanvas-right
 ```
 
+Dropdown menus are support, again using the Bootstrap standard markup.
+
+The only difference is that it doesn't need the data-toggle. But this could be left in if you require it to be present.
+
+```html
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle">Dropdown <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+        <li class="divider"></li>
+        <li><a href="#">One more separated link</a></li>
+    </ul>
+</li>
+```
+
 ### Touch events
 
 It is possible to add touch events to swipe the menu in and out by simply adding the following class to the navigation HTML element.
