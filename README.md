@@ -2,7 +2,7 @@
 
 Super simple, easy to use off-canvas navigation menu for Bootstrap.
 
-It uses Bootstrap classes and markup to create an off-canvas menu that not only looks good. But works perfectly.
+It uses Bootstrap classes and markup to create an off-canvas menu that not only looks good. But works perfectly. Example can be found [here](http://iamphill.github.io/Bootstrap-Offcanvas/example.html).
 
 ![Screencap showing off-canvas menu](screencap.gif)
 
