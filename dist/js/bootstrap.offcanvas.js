@@ -29,6 +29,7 @@
       this.location = location;
       this.offcanvas = offcanvas;
       this._clearCss = __bind(this._clearCss, this);
+      this._getFade = __bind(this._getFade, this);
       this._getCss = __bind(this._getCss, this);
       this._touchEnd = __bind(this._touchEnd, this);
       this._touchMove = __bind(this._touchMove, this);
@@ -37,6 +38,7 @@
       this.startThreshold = this.element.hasClass('navbar-offcanvas-right') ? $("body").outerWidth() - 60 : 20;
       this.maxStartThreshold = this.element.hasClass('navbar-offcanvas-right') ? $("body").outerWidth() - 20 : 60;
       this.currentX = 0;
+      this.fade = this.element.hasClass('navbar-offcanvas-fade') ? true : false;
       $(document).on("touchstart", this._touchStart);
       $(document).on("touchmove", this._touchMove);
       $(document).on("touchend", this._touchEnd);
@@ -56,14 +58,16 @@
         x = e.originalEvent.touches[0].pageX - this.startX;
         x = this.element.hasClass('navbar-offcanvas-right') ? -x : x;
         if (Math.abs(x) < this.element.outerWidth()) {
-          return this.element.css(this._getCss(x));
+          this.element.css(this._getCss(x));
+          return this.element.css(this._getFade(x));
         }
       } else if (this.element.hasClass('in')) {
         e.preventDefault();
         x = e.originalEvent.touches[0].pageX + (this.currentX - this.startX);
         x = this.element.hasClass('navbar-offcanvas-right') ? -x : x;
         if (Math.abs(x) < this.element.outerWidth()) {
-          return this.element.css(this._getCss(x));
+          this.element.css(this._getCss(x));
+          return this.element.css(this._getFade(x));
         }
       }
     };
@@ -101,6 +105,16 @@
       };
     };
 
+    OffcanvasTouch.prototype._getFade = function(x) {
+      if (this.fade) {
+        return {
+          "opacity": x / this.element.outerWidth()
+        };
+      } else {
+        return {};
+      }
+    };
+
     OffcanvasTouch.prototype._clearCss = function() {
       return {
         "-webkit-transform": "",
@@ -110,7 +124,8 @@
         "-o-transform": "",
         "-o-transition": "",
         "transform": "",
-        "transition": ""
+        "transition": "",
+        "opacity": ""
       };
     };
 

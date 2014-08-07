@@ -15,6 +15,10 @@
     .navbar-offcanvas.in {
       box-shadow: 0px 0px 20px black;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); }
+    .navbar-offcanvas.navbar-offcanvas-fade {
+      opacity: 0; }
+      .navbar-offcanvas.navbar-offcanvas-fade.in {
+        opacity: 1; }
     .navbar-offcanvas.offcanvas-transform.in {
       -webkit-transform: translate3d(250px, 0px, 0px);
       -moz-transform: translate3d(250px, 0px, 0px);

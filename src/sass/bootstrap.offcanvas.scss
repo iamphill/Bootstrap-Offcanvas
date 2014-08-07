@@ -18,6 +18,14 @@
             box-shadow:0px 0px 20px rgba(0, 0, 0, 0.3);
         }
 
+        &.navbar-offcanvas-fade {
+            opacity:0;
+
+            &.in {
+                opacity:1;
+            }
+        }
+
         &.offcanvas-transform {
             &.in {
                 @include transform(translate3d($offcanvas-width, 0px, 0px));

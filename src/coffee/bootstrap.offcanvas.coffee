@@ -31,6 +31,9 @@ class OffcanvasTouch
         @maxStartThreshold = if @element.hasClass 'navbar-offcanvas-right' then $("body").outerWidth() - 20 else 60
         @currentX = 0
 
+        # Should this element fade in?
+        @fade = if @element.hasClass 'navbar-offcanvas-fade' then true else false
+
         # Add touch start event
         $(document).on "touchstart", @_touchStart
 
@@ -61,6 +64,7 @@ class OffcanvasTouch
             if Math.abs(x) < @element.outerWidth()
                 # Get CSS to move element
                 @element.css @_getCss x
+                @element.css @_getFade x
         else if @element.hasClass 'in'
             e.preventDefault()
 
@@ -70,6 +74,9 @@ class OffcanvasTouch
             if Math.abs(x) < @element.outerWidth()
                 # Get CSS to move element
                 @element.css @_getCss x
+                @element.css @_getFade x
+
+
 
     #   Private: Touch end
     #
@@ -115,6 +122,20 @@ class OffcanvasTouch
             "transition": "0s"
         }
 
+    #   Private: Get fade CSS
+    #
+    #   x - Location of touch
+    _getFade: (x) =>
+        # Is this a fade nav?
+        if @fade
+            {
+                "opacity": x / @element.outerWidth()
+            }
+        else
+            {
+                
+            }
+
     #   Private: Clear CSS properties
     _clearCss: =>
         {
@@ -126,6 +147,7 @@ class OffcanvasTouch
             "-o-transition": ""
             "transform": ""
             "transition": ""
+            "opacity": ""
         }
 
 class Offcanvas

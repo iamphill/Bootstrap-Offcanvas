@@ -79,6 +79,14 @@ The only difference is that it doesn't need the data-toggle. But this could be l
 </li>
 ```
 
+### Transitions
+
+There is 1 additional transition and this is fade in/out. This is done by adding the below class. **Note:** This also works with touch events and will correctly do the right amount of opacity for the location of the touch.
+
+```
+navbar-offcanvas-fade
+```
+
 ### Touch events
 
 It is possible to add touch events to swipe the menu in and out by simply adding the following class to the navigation HTML element.
@@ -138,6 +146,6 @@ Open [tests/index.html](https://github.com/iamphill/Bootstrap-Offcanvas/blob/mas
 
 - [x] Style dropdown menus
 - [ ] ~~Fade out content behind off canvas menu when pulled out~~ - This has been decided against. If required, please open an issue.
-- [ ] Different transitions and animations when pulling out and hiding
+- [x] Different transitions and animations when pulling out and hiding
 - [x] Swipe to pull menu out
 - [x] Multiple touch events
