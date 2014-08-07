@@ -1,8 +1,3 @@
-# Only one navbar should have touch enabled
-# More than one would cause confusion on the page
-# This variable is true if touch is already enabled or false if not
-touch = false
-
 class OffcanvasDropdown
     #   Public: Constructor for offcanvas
     #
@@ -161,8 +156,6 @@ class Offcanvas
 
                 # Should touch be added to this target
                 if @target.hasClass 'navbar-offcanvas-touch'
-                    touch = true
-
                     # Create touch class
                     t = new OffcanvasTouch @target, @location, @
 

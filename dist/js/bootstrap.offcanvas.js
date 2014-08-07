@@ -1,8 +1,6 @@
 (function() {
-  var Offcanvas, OffcanvasDropdown, OffcanvasTouch, touch, transformCheck,
+  var Offcanvas, OffcanvasDropdown, OffcanvasTouch, transformCheck,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-  touch = false;
 
   OffcanvasDropdown = (function() {
     function OffcanvasDropdown(element) {
@@ -138,7 +136,6 @@
           this.element.on("click", this._clicked);
           $(document).on("click", this._documentClicked);
           if (this.target.hasClass('navbar-offcanvas-touch')) {
-            touch = true;
             t = new OffcanvasTouch(this.target, this.location, this);
           }
           this.target.find(".dropdown-toggle").each(function() {

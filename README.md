@@ -88,8 +88,7 @@ navbar-offcanvas-touch
 ```
 
 **NOTE**
-This will only add to the first found off-canvas menu for now. At some point in the future I might make it be able to handle more than element.
-However, just for now it will take the first off-canvas menu with the class `navbar-offcanvas-touch` and presume this should have touch events.
+Whilst multiple touch navs do work, they must be on the other side of the screen to each other. If two navs on the same side have touch, it won't work correctly. But then you knew that anyway right?
 
 iOS7+ does have a gesture to swipe the page back and forward, and a threshold has been put in. This might not be perfect, and might need tweaking.
 
@@ -141,4 +140,4 @@ Open [tests/index.html](https://github.com/iamphill/Bootstrap-Offcanvas/blob/mas
 - [ ] ~~Fade out content behind off canvas menu when pulled out~~ - This has been decided against. If required, please open an issue.
 - [ ] Different transitions and animations when pulling out and hiding
 - [x] Swipe to pull menu out
-- [ ] Multiple touch events
+- [x] Multiple touch events
