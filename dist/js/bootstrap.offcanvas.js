@@ -145,9 +145,11 @@
       target = this.element.attr('data-target') ? this.element.attr('data-target') : false;
       if (target) {
         this.target = $(target);
-        if (this.target.length) {
+        if (this.target.length && !this.target.hasClass('js-offcanas-done')) {
+          this.element.addClass('js-offcanvas-has-events');
           this.location = this.target.hasClass("navbar-offcanvas-right") ? "right" : "left";
-          this.target.addClass(transform ? "offcanvas-transform" : "offcanvas-position");
+          this.target.addClass(transform ? "offcanvas-transform js-offcanas-done" : "offcanvas-position js-offcanas-done");
+          this.target.data('offcanvas', this);
           this.element.on("click", this._clicked);
           $(document).on("click", this._documentClicked);
           if (this.target.hasClass('navbar-offcanvas-touch')) {
@@ -157,8 +159,6 @@
             var d;
             return d = new OffcanvasDropdown(this);
           });
-        } else {
-          console.warn("Offcanvas: Can't find target element with selector " + target + ".");
         }
       } else {
         console.warn('Offcanvas: `data-target` attribute must be present.');
@@ -227,9 +227,21 @@
 
   $(function() {
     transformCheck();
-    return $('[data-toggle="offcanvas"]').each(function() {
+    $('[data-toggle="offcanvas"]').each(function() {
       var oc;
       return oc = new Offcanvas($(this));
+    });
+    return $('.offcanvas-toggle').each(function() {
+      return $(this).on('click', function(e) {
+        var el, selector;
+        if (!$(this).hasClass('js-offcanvas-has-events')) {
+          selector = $(this).attr('data-target');
+          el = $(selector);
+          if (el) {
+            return el.toggleClass('in');
+          }
+        }
+      });
     });
   });
 

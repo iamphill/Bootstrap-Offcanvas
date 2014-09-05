@@ -133,7 +133,7 @@ class OffcanvasTouch
             }
         else
             {
-                
+
             }
 
     #   Private: Clear CSS properties
@@ -164,11 +164,17 @@ class Offcanvas
             @target = $(target)
 
             # Target must be available before running
-            if @target.length
+            if @target.length and !@target.hasClass 'js-offcanas-done'
+                # Add class to element to say it already has events
+                @element.addClass 'js-offcanvas-has-events'
+
                 # Get the location of the offcanvas menu
                 @location = if @target.hasClass "navbar-offcanvas-right" then "right" else "left"
 
-                @target.addClass if transform then "offcanvas-transform" else "offcanvas-position"
+                @target.addClass if transform then "offcanvas-transform js-offcanas-done" else "offcanvas-position js-offcanas-done"
+
+                # Add some data
+                @target.data 'offcanvas', @
 
                 # Click event on element
                 @element.on "click", @_clicked
@@ -184,9 +190,6 @@ class Offcanvas
                 # Get all dropdown menu links and create a class for them
                 @target.find(".dropdown-toggle").each ->
                     d = new OffcanvasDropdown @
-            else
-                # Log a warning
-                console.warn "Offcanvas: Can't find target element with selector #{target}."
         else
             # Just log a warning
             console.warn 'Offcanvas: `data-target` attribute must be present.'
@@ -265,3 +268,15 @@ $ ->
 
     $('[data-toggle="offcanvas"]').each ->
         oc = new Offcanvas $(this)
+
+    $('.offcanvas-toggle').each ->
+        $(this).on 'click', (e) ->
+            if !$(this).hasClass 'js-offcanvas-has-events'
+              selector = $(this).attr 'data-target'
+
+              # Get el
+              el = $(selector)
+
+              if el
+                # Toggle class
+                el.toggleClass 'in'

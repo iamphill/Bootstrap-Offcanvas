@@ -79,6 +79,16 @@ The only difference is that it doesn't need the data-toggle. But this could be l
 </li>
 ```
 
+You can have another button somewhere on the page that will toggle the status of the offcanvas between in & out.
+**NOTE: The plugin doesn't know which one you want as the main button to toggle the offcanvas. So it instead just uses the first it finds for the specified target element**
+
+```html
+<button type="button" class="navbar-toggle offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas" style="float:left;">
+    <span class="sr-only">Toggle navigation</span>
+    <i class="glyphicon glyphicon-remove"></i>
+</button>
+```
+
 ### Transitions
 
 There is 1 additional transition and this is fade in/out. This is done by adding the below class. **Note:** This also works with touch events and will correctly do the right amount of opacity for the location of the touch.
