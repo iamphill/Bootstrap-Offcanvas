@@ -89,6 +89,17 @@ You can have another button somewhere on the page that will toggle the status of
 </button>
 ```
 
+There is an in-built version of a offcanvas toggle which uses the icon bars. Simply use the below markup
+
+```html
+<button type="button" class="navbar-toggle offcanvas-toggle offcanvas-toggle-close" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="sr-only">Toggle navigation</span>
+</button>
+```
+
 ### Transitions
 
 There is 1 additional transition and this is fade in/out. This is done by adding the below class. **Note:** This also works with touch events and will correctly do the right amount of opacity for the location of the touch.

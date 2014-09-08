@@ -3,6 +3,7 @@
     position: fixed;
     height: 100%;
     width: 250px;
+    max-width: 100%;
     left: -250px;
     top: 0px;
     z-index: 999;
@@ -64,3 +65,17 @@
   background: #f8f8f8; }
   .offcanvas-toggle .icon-bar {
     background: #000; }
+  .offcanvas-toggle.offcanvas-toggle-close {
+    margin-right: 0px; }
+    .offcanvas-toggle.offcanvas-toggle-close .icon-bar:nth-child(1) {
+      -webkit-transform: rotate(45deg) translate(5px, 4px);
+      -moz-transform: rotate(45deg) translate(5px, 4px);
+      -o-transform: rotate(45deg) translate(5px, 4px);
+      transform: rotate(45deg) translate(5px, 4px); }
+    .offcanvas-toggle.offcanvas-toggle-close .icon-bar:nth-child(2) {
+      opacity: 0 !important; }
+    .offcanvas-toggle.offcanvas-toggle-close .icon-bar:nth-child(3) {
+      -webkit-transform: rotate(-45deg) translate(4px, -4px);
+      -moz-transform: rotate(-45deg) translate(4px, -4px);
+      -o-transform: rotate(-45deg) translate(4px, -4px);
+      transform: rotate(-45deg) translate(4px, -4px); }

@@ -6,6 +6,7 @@
         position:fixed;
         height:100%;
         width:$offcanvas-width;
+        max-width:100%;
         left:-$offcanvas-width;
         top:0px;
         z-index:999;
@@ -97,4 +98,20 @@
     .icon-bar {
         background:$offcanvas-toggle-bars-color;
     }
+
+    &.offcanvas-toggle-close {
+        margin-right: 0px;
+
+    .icon-bar:nth-child(1) {
+        @include transform(rotate(45deg) translate(5px, 4px));
+    }
+
+    .icon-bar:nth-child(2) {
+        opacity: 0!important;
+    }
+
+    .icon-bar:nth-child(3) {
+        @include transform(rotate(-45deg) translate(4px, -4px));
+    }
+  }
 }
