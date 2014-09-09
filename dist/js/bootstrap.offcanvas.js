@@ -238,7 +238,8 @@
           selector = $(this).attr('data-target');
           el = $(selector);
           if (el) {
-            return el.toggleClass('in');
+            el.removeClass('in');
+            return $('body').css('overflow', '');
           }
         }
       });

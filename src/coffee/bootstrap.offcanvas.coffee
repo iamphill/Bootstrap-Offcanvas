@@ -279,4 +279,5 @@ $ ->
 
               if el
                 # Toggle class
-                el.toggleClass 'in'
+                el.removeClass 'in'
+                $('body').css 'overflow', ''
