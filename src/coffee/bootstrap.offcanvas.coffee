@@ -247,6 +247,7 @@ class Offcanvas
 
         $("body").css
             overflow: if @target.hasClass 'in' then 'hidden' else ''
+            position: if @target.hasClass 'in' then 'fixed' else ''
 
 
 #   Transform checker
@@ -280,4 +281,6 @@ $ ->
               if el
                 # Toggle class
                 el.removeClass 'in'
-                $('body').css 'overflow', ''
+                $('body').css
+                  overflow: ''
+                  position: ''

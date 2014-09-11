@@ -205,7 +205,8 @@
     Offcanvas.prototype.bodyOverflow = function() {
       this._sendEventsAfter();
       return $("body").css({
-        overflow: this.target.hasClass('in') ? 'hidden' : ''
+        overflow: this.target.hasClass('in') ? 'hidden' : '',
+        position: this.target.hasClass('in') ? 'fixed' : ''
       });
     };
 
@@ -239,7 +240,10 @@
           el = $(selector);
           if (el) {
             el.removeClass('in');
-            return $('body').css('overflow', '');
+            return $('body').css({
+              overflow: '',
+              position: ''
+            });
           }
         }
       });
