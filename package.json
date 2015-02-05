@@ -5,6 +5,10 @@
     "name": "Phil Hughes",
     "url": "http://www.iamphill.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/iamphill/Bootstrap-Offcanvas.git"
+  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-coffee": "^0.10.1",
