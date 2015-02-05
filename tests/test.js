@@ -7,7 +7,7 @@ test("Show off-canvas menu test", function (assert) {
 test("Hide off-canvas menu test", function (assert) {
     $("#offcanvas-toggle").trigger("click");
 
-    assert.ok(!$("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should be hidden");
+    assert.ok($("#js-bootstrap-offcanvas").is(":not(in)"), "Off-Canvas should be hidden");
 });
 
 test("Body click hide off-canvas menu test", function (assert) {
