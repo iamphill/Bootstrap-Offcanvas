@@ -1,4 +1,4 @@
-# Bootstrap Offcanvas
+# Bootstrap Offcanvas [![Build Status](https://travis-ci.org/iamphill/Bootstrap-Offcanvas.svg?branch=master)](https://travis-ci.org/iamphill/Bootstrap-Offcanvas)
 
 Super simple, easy to use off-canvas navigation menu for Bootstrap.
 
