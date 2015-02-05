@@ -46,7 +46,7 @@ module.exports = function(grunt) {
             },
             test_css: {
                 files: {
-                    "test/css/bootstrap.offcanvas.css": "src/sass/bootstrap.offcanvas.test.scss"
+                    "tests/css/bootstrap.offcanvas.css": "src/sass/bootstrap.offcanvas.test.scss"
                 }
             }
         },
