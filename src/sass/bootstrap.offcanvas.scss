@@ -1,29 +1,29 @@
 @import "vars";
 @import "mixins";
 
-@media (max-width: $screen-sm) {
+@media (max-width: $offcanvas-media) {
     .navbar-offcanvas {
-        position:fixed;
-        height:100%;
-        width:$offcanvas-width;
-        max-width:100%;
-        left:-$offcanvas-width;
-        top:0px;
-        z-index:999;
-        overflow-y:scroll;
-        -webkit-overflow-scrolling:touch;
+        position: fixed;
+        height: 100%;
+        width: $offcanvas-width;
+        max-width: 100%;
+        left: -$offcanvas-width;
+        top: 0px;
+        z-index: 999;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
         @include transition(all $offcanvas-animation-time ease-in);
 
         &.in {
-            box-shadow:0px 0px 20px black;
-            box-shadow:0px 0px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 20px black;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
         }
 
         &.navbar-offcanvas-fade {
-            opacity:0;
+            opacity: 0;
 
             &.in {
-                opacity:1;
+                opacity: 1;
             }
         }
 
@@ -35,13 +35,13 @@
 
         &.offcanvas-position {
             &.in {
-                left:0px;
+                left: 0px;
             }
         }
 
         &.navbar-offcanvas-right {
-            left:auto;
-            right:-$offcanvas-width;
+            left: auto;
+            right: -$offcanvas-width;
 
             &.offcanvas-transform {
                 &.in {
@@ -51,8 +51,8 @@
 
             &.offcanvas-position {
                 &.in {
-                    left:auto;
-                    right:0px;
+                    left: auto;
+                    right: 0px;
                 }
             }
         }
@@ -60,32 +60,32 @@
         .dropdown {
             &.active {
                 .caret {
-                    border-top:0px;
-                    border-bottom:4px solid;
+                    border-top: 0px;
+                    border-bottom: 4px solid;
                 }
             }
         }
 
         .dropdown-menu {
-            position:relative;
-            display:block;
-            width:100%;
-            background:inherit;
-            border:inherit;
-            box-shadow:none;
-            padding:0px;
-            overflow:hidden;
+            position: relative;
+            display: block;
+            width: 100%;
+            background: inherit;
+            border: inherit;
+            box-shadow: none;
+            padding: 0px;
+            overflow: hidden;
             @include transition(all $offcanvas-animation-time ease-in);
-            height:0px;
+            height: 0px;
 
             &.shown {
-                height:auto;
+                height: auto;
             }
 
             > li {
                 > a {
-                    color:$navbar-default-link-color;
-                    padding:($navbar-padding-vertical - 5) $navbar-padding-horizontal ($navbar-padding-vertical - 5) ($navbar-padding-horizontal + 15);
+                    color: $navbar-default-link-color;
+                    padding: ($navbar-padding-vertical - 5) $navbar-padding-horizontal ($navbar-padding-vertical - 5) ($navbar-padding-horizontal + 15);
                 }
             }
         }
@@ -93,25 +93,25 @@
 }
 
 .offcanvas-toggle {
-    background:$offcanvas-toggle-background;
+    background: $offcanvas-toggle-background;
 
     .icon-bar {
-        background:$offcanvas-toggle-bars-color;
+        background: $offcanvas-toggle-bars-color;
     }
 
     &.offcanvas-toggle-close {
         margin-right: 0px;
 
-    .icon-bar:nth-child(1) {
-        @include transform(rotate(45deg) translate(5px, 4px));
-    }
+        .icon-bar:nth-child(1) {
+            @include transform(rotate(45deg) translate(5px, 4px));
+        }
 
-    .icon-bar:nth-child(2) {
-        opacity: 0!important;
-    }
+        .icon-bar:nth-child(2) {
+            opacity: 0!important;
+        }
 
-    .icon-bar:nth-child(3) {
-        @include transform(rotate(-45deg) translate(4px, -4px));
+        .icon-bar:nth-child(3) {
+            @include transform(rotate(-45deg) translate(4px, -4px));
+        }
     }
-  }
 }

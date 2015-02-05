@@ -43,6 +43,11 @@ module.exports = function(grunt) {
                 files: {
                     "dist/css/bootstrap.offcanvas.min.css": "src/sass/bootstrap.offcanvas.scss"
                 }
+            },
+            test_css: {
+                files: {
+                    "test/css/bootstrap.offcanvas.css": "src/sass/bootstrap.offcanvas.test.scss"
+                }
             }
         },
         coffee: {
