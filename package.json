@@ -18,6 +18,6 @@
     "grunt-contrib-qunit": ">=0.2.1"
   },
   "scripts": {
-    "test": "grunt tests"
+    "test": "bootlint tests/index.html && grunt tests"
   }
 }

@@ -9,10 +9,10 @@
     z-index: 999;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    -webkit-transition: all 0.15s ease-in;
-    -moz-transition: all 0.15s ease-in;
-    -o-transition: all 0.15s ease-in;
-    transition: all 0.15s ease-in; }
+    -webkit-transition: all 0s ease-in;
+    -moz-transition: all 0s ease-in;
+    -o-transition: all 0s ease-in;
+    transition: all 0s ease-in; }
     .navbar-offcanvas.in {
       box-shadow: 0px 0px 20px black;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); }
@@ -50,10 +50,10 @@
       box-shadow: none;
       padding: 0px;
       overflow: hidden;
-      -webkit-transition: all 0.15s ease-in;
-      -moz-transition: all 0.15s ease-in;
-      -o-transition: all 0.15s ease-in;
-      transition: all 0.15s ease-in;
+      -webkit-transition: all 0s ease-in;
+      -moz-transition: all 0s ease-in;
+      -o-transition: all 0s ease-in;
+      transition: all 0s ease-in;
       height: 0px; }
       .navbar-offcanvas .dropdown-menu.shown {
         height: auto; }
