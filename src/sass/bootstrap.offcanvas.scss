@@ -1,117 +1,107 @@
 @import "vars";
-@import "mixins";
 
 @media (max-width: $offcanvas-media) {
-    .navbar-offcanvas {
-        position: fixed;
-        height: 100%;
-        width: $offcanvas-width;
-        max-width: 100%;
-        left: -$offcanvas-width;
-        top: 0px;
-        z-index: 999;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-        @include transition(all $offcanvas-animation-time ease-in);
+  .navbar-offcanvas {
+    position: fixed;
+    height: 100%;
+    width: $offcanvas-width;
+    max-width: 100%;
+    left: -$offcanvas-width;
+    top: 0;
+    z-index: 999;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    transition: all $offcanvas-animation-time ease-in;
 
-        &.in {
-            box-shadow: 0px 0px 20px black;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        &.navbar-offcanvas-fade {
-            opacity: 0;
-
-            &.in {
-                opacity: 1;
-            }
-        }
-
-        &.offcanvas-transform {
-            &.in {
-                @include transform(translate3d($offcanvas-width, 0px, 0px));
-            }
-        }
-
-        &.offcanvas-position {
-            &.in {
-                left: 0px;
-            }
-        }
-
-        &.navbar-offcanvas-right {
-            left: auto;
-            right: -$offcanvas-width;
-
-            &.offcanvas-transform {
-                &.in {
-                    @include transform(translate3d(-$offcanvas-width, 0px, 0px));
-                }
-            }
-
-            &.offcanvas-position {
-                &.in {
-                    left: auto;
-                    right: 0px;
-                }
-            }
-        }
-
-        .dropdown {
-            &.active {
-                .caret {
-                    border-top: 0px;
-                    border-bottom: 4px solid;
-                }
-            }
-        }
-
-        .dropdown-menu {
-            position: relative;
-            display: block;
-            width: 100%;
-            background: inherit;
-            border: inherit;
-            box-shadow: none;
-            padding: 0px;
-            overflow: hidden;
-            @include transition(all $offcanvas-animation-time ease-in);
-            height: 0px;
-
-            &.shown {
-                height: auto;
-            }
-
-            > li {
-                > a {
-                    color: $navbar-default-link-color;
-                    padding: ($navbar-padding-vertical - 5) $navbar-padding-horizontal ($navbar-padding-vertical - 5) ($navbar-padding-horizontal + 15);
-                }
-            }
-        }
+    &.in {
+      box-shadow: 0 0 20px rgba(0, 0, 0, .3);
     }
+
+    &.navbar-offcanvas-fade {
+      opacity: 0;
+
+      &.in {
+        opacity: 1;
+      }
+    }
+
+    &.offcanvas-transform {
+      &.in {
+        transform: translate3d($offcanvas-width, 0, 0);
+      }
+    }
+
+    &.offcanvas-position {
+      &.in {
+        left: 0;
+      }
+    }
+
+    &.navbar-offcanvas-right {
+      left: auto;
+      right: -$offcanvas-width;
+
+      &.offcanvas-transform .in {
+        transform: translate3d(-$offcanvas-width, 0, 0);
+      }
+
+      &.offcanvas-position.in {
+        left: auto;
+        right: 0;
+      }
+    }
+
+    .dropdown {
+      &.active .caret {
+        border-top: 0;
+        border-bottom: 4px solid;
+      }
+    }
+
+    .dropdown-menu {
+      position: relative;
+      display: block;
+      width: 100%;
+      background: inherit;
+      border: inherit;
+      box-shadow: none;
+      padding: 0;
+      overflow: hidden;
+      transition: all $offcanvas-animation-time ease-in;
+      height: 0;
+
+      &.shown {
+        height: auto;
+      }
+
+      > li > a {
+        color: $navbar-default-link-color;
+        padding: ($navbar-padding-vertical - 5) $navbar-padding-horizontal ($navbar-padding-vertical - 5) ($navbar-padding-horizontal + 15);
+      }
+    }
+  }
 }
 
 .offcanvas-toggle {
-    background: $offcanvas-toggle-background;
+  background: $offcanvas-toggle-background;
 
-    .icon-bar {
-        background: $offcanvas-toggle-bars-color;
+  .icon-bar {
+    background: $offcanvas-toggle-bars-color;
+  }
+
+  &.offcanvas-toggle-close {
+    margin-right: 0;
+
+    .icon-bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 4px);
     }
 
-    &.offcanvas-toggle-close {
-        margin-right: 0px;
-
-        .icon-bar:nth-child(1) {
-            @include transform(rotate(45deg) translate(5px, 4px));
-        }
-
-        .icon-bar:nth-child(2) {
-            opacity: 0!important;
-        }
-
-        .icon-bar:nth-child(3) {
-            @include transform(rotate(-45deg) translate(4px, -4px));
-        }
+    .icon-bar:nth-child(2) {
+      opacity: 0;
     }
+
+    .icon-bar:nth-child(3) {
+      transform: rotate(-45deg) translate(4px, -4px);
+    }
+  }
 }

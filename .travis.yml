@@ -4,7 +4,9 @@ node_js:
 before_install:
   - npm install -g grunt-cli
   - npm install -g bower
-  - npm install -g bootlint
+  - rvm use 2.1.0
+  - gem install bundler
+  - bundle install
 install:
   - npm install
   - bower install
@@ -12,3 +14,6 @@ before_script:
   - grunt sass
   - grunt coffee
   - grunt uglify
+script:
+  - npm test
+  - rake

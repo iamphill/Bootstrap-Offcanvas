@@ -10,9 +10,7 @@
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     -webkit-transition: all 0s ease-in;
-    -moz-transition: all 0s ease-in;
-    -o-transition: all 0s ease-in;
-    transition: all 0s ease-in; }
+            transition: all 0s ease-in; }
     .navbar-offcanvas.in {
       box-shadow: 0px 0px 20px black;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); }
@@ -22,9 +20,7 @@
         opacity: 1; }
     .navbar-offcanvas.offcanvas-transform.in {
       -webkit-transform: translate3d(250px, 0px, 0px);
-      -moz-transform: translate3d(250px, 0px, 0px);
-      -o-transform: translate3d(250px, 0px, 0px);
-      transform: translate3d(250px, 0px, 0px); }
+              transform: translate3d(250px, 0px, 0px); }
     .navbar-offcanvas.offcanvas-position.in {
       left: 0px; }
     .navbar-offcanvas.navbar-offcanvas-right {
@@ -32,9 +28,7 @@
       right: -250px; }
       .navbar-offcanvas.navbar-offcanvas-right.offcanvas-transform.in {
         -webkit-transform: translate3d(-250px, 0px, 0px);
-        -moz-transform: translate3d(-250px, 0px, 0px);
-        -o-transform: translate3d(-250px, 0px, 0px);
-        transform: translate3d(-250px, 0px, 0px); }
+                transform: translate3d(-250px, 0px, 0px); }
       .navbar-offcanvas.navbar-offcanvas-right.offcanvas-position.in {
         left: auto;
         right: 0px; }
@@ -51,9 +45,7 @@
       padding: 0px;
       overflow: hidden;
       -webkit-transition: all 0s ease-in;
-      -moz-transition: all 0s ease-in;
-      -o-transition: all 0s ease-in;
-      transition: all 0s ease-in;
+              transition: all 0s ease-in;
       height: 0px; }
       .navbar-offcanvas .dropdown-menu.shown {
         height: auto; }
@@ -69,13 +61,11 @@
     margin-right: 0px; }
     .offcanvas-toggle.offcanvas-toggle-close .icon-bar:nth-child(1) {
       -webkit-transform: rotate(45deg) translate(5px, 4px);
-      -moz-transform: rotate(45deg) translate(5px, 4px);
-      -o-transform: rotate(45deg) translate(5px, 4px);
-      transform: rotate(45deg) translate(5px, 4px); }
+          -ms-transform: rotate(45deg) translate(5px, 4px);
+              transform: rotate(45deg) translate(5px, 4px); }
     .offcanvas-toggle.offcanvas-toggle-close .icon-bar:nth-child(2) {
       opacity: 0 !important; }
     .offcanvas-toggle.offcanvas-toggle-close .icon-bar:nth-child(3) {
       -webkit-transform: rotate(-45deg) translate(4px, -4px);
-      -moz-transform: rotate(-45deg) translate(4px, -4px);
-      -o-transform: rotate(-45deg) translate(4px, -4px);
-      transform: rotate(-45deg) translate(4px, -4px); }
+          -ms-transform: rotate(-45deg) translate(4px, -4px);
+              transform: rotate(-45deg) translate(4px, -4px); }

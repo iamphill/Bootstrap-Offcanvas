@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         watch: {
             sass: {
                 files: ["src/sass/*.scss"],
-                tasks: ["sass"],
+                tasks: ["sass", 'autoprefixer'],
                 options: {
                     livereload: true
                 }
@@ -50,6 +50,20 @@ module.exports = function(grunt) {
                 }
             }
         },
+        autoprefixer: {
+            uncompressed: {
+              src: 'dist/css/bootstrap.offcanvas.css',
+              desc: 'dist/css/bootstrap.offcanvas.css'
+            },
+            dist: {
+              src: 'dist/css/bootstrap.offcanvas.min.css',
+              dest: 'dist/css/bootstrap.offcanvas.min.css'
+            },
+            test: {
+              src: 'tests/css/bootstrap.offcanvas.css',
+              dest: 'tests/css/bootstrap.offcanvas.css'
+            }
+        },
         coffee: {
             compile: {
                 files: {
@@ -69,6 +83,9 @@ module.exports = function(grunt) {
         },
         qunit: {
             all: ["tests/*.html"]
+        },
+        bootlint: {
+          files: ['example/index.html']
         }
     });
 
@@ -78,8 +95,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-bootlint');
 
     // Grunt tasks
     grunt.registerTask("default", ["watch"]);
-    grunt.registerTask("tests", ['qunit']);
+    grunt.registerTask("tests", ['bootlint', 'qunit']);
 };
