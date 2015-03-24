@@ -157,7 +157,7 @@ $offcanvas-toggle-background: #f8f8f8 !default; // Background colour for toggle
 $offcanvas-toggle-bars-color: #000 !default; // Colour for icon bars in toggle
 ```
 
-There is one media query and this uses the Bootstrap `$screen-sm` variable. If this isn't present, then the width of `768px` is used for the breakpoint.
+There is one media query and this uses the Bootstrap `$screen-xs-max` variable. If this isn't present, then the width of `767px` is used for the breakpoint.
 
 ## Tests
 
