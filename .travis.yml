@@ -4,7 +4,6 @@ node_js:
 before_install:
   - npm install -g grunt-cli
   - npm install -g bower
-  - rvm install ruby-2.1.0
 install:
   - npm install
   - bower install
