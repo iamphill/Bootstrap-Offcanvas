@@ -14,29 +14,13 @@
     });
 
     test("Body click hide off-canvas menu test", function (assert) {
-        var done = assert.async();
-        var done2 = assert.async();
-        var done3 = assert.async();
-        assert.expect(4);
+        assert.expect(2);
 
         $("#offcanvas-toggle").trigger("click");
         assert.ok($("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should be visible");
 
-        setTimeout(function () {
-          assert.deepEqual($("#js-bootstrap-offcanvas").offset().left, 0, 'Off-Canvas offset should be 0 (Visible)');
-          done();
-        }, 10);
-
-        setTimeout(function () {
-          $("body").trigger("click");
-          assert.ok(!$("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should be hidden");
-          done2();
-        }, 20);
-
-        setTimeout(function () {
-          assert.deepEqual($("#js-bootstrap-offcanvas").offset().left, -250, 'Off-Canvas offset should be -250 (Hidden)');
-          done3();
-        }, 30);
+        $("body").trigger("click");
+        assert.ok(!$("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should be hidden");
     });
 
     test("Dropdown test", function (assert) {
