@@ -27,7 +27,7 @@
 
     &.offcanvas-transform {
       &.in {
-        transform: translate3d($offcanvas-width, 0, 0);
+        transform: translateX($offcanvas-width);
       }
     }
 
@@ -42,7 +42,7 @@
       right: -$offcanvas-width;
 
       &.offcanvas-transform .in {
-        transform: translate3d(-$offcanvas-width, 0, 0);
+        transform: translateX(-$offcanvas-width);
       }
 
       &.offcanvas-position.in {
