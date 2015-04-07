@@ -26,7 +26,7 @@
     .navbar-offcanvas.navbar-offcanvas-right {
       left: auto;
       right: -250px; }
-      .navbar-offcanvas.navbar-offcanvas-right.offcanvas-transform .in {
+      .navbar-offcanvas.navbar-offcanvas-right.offcanvas-transform.in {
         -webkit-transform: translateX(-250px);
             -ms-transform: translateX(-250px);
                 transform: translateX(-250px); }

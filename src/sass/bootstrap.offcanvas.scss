@@ -41,7 +41,7 @@
       left: auto;
       right: -$offcanvas-width;
 
-      &.offcanvas-transform .in {
+      &.offcanvas-transform.in {
         transform: translateX(-$offcanvas-width);
       }
 
