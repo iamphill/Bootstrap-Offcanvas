@@ -263,24 +263,27 @@ transformCheck = =>
 
     @transform = asSupport.length?
 
-$ ->
-    # Work out if transform3d is available for use
-    transformCheck()
+(($, window) ->
+  $ ->
+      # Work out if transform3d is available for use
+      transformCheck()
 
-    $('[data-toggle="offcanvas"]').each ->
-        oc = new Offcanvas $(this)
+      $('[data-toggle="offcanvas"]').each ->
+          oc = new Offcanvas $(this)
 
-    $('.offcanvas-toggle').each ->
-        $(this).on 'click', (e) ->
-            if !$(this).hasClass 'js-offcanvas-has-events'
-              selector = $(this).attr 'data-target'
+      $('.offcanvas-toggle').each ->
+          $(this).on 'click', (e) ->
+              if !$(this).hasClass 'js-offcanvas-has-events'
+                selector = $(this).attr 'data-target'
 
-              # Get el
-              el = $(selector)
+                # Get el
+                el = $(selector)
 
-              if el
-                # Toggle class
-                el.removeClass 'in'
-                $('body').css
-                  overflow: ''
-                  position: ''
+                if el
+                  # Toggle class
+                  el.removeClass 'in'
+                  $('body').css
+                    overflow: ''
+                    position: ''
+
+) window.jQuery, window

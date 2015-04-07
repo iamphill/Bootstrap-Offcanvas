@@ -226,28 +226,30 @@
     };
   })(this);
 
-  $(function() {
-    transformCheck();
-    $('[data-toggle="offcanvas"]').each(function() {
-      var oc;
-      return oc = new Offcanvas($(this));
-    });
-    return $('.offcanvas-toggle').each(function() {
-      return $(this).on('click', function(e) {
-        var el, selector;
-        if (!$(this).hasClass('js-offcanvas-has-events')) {
-          selector = $(this).attr('data-target');
-          el = $(selector);
-          if (el) {
-            el.removeClass('in');
-            return $('body').css({
-              overflow: '',
-              position: ''
-            });
+  (function($, window) {
+    return $(function() {
+      transformCheck();
+      $('[data-toggle="offcanvas"]').each(function() {
+        var oc;
+        return oc = new Offcanvas($(this));
+      });
+      return $('.offcanvas-toggle').each(function() {
+        return $(this).on('click', function(e) {
+          var el, selector;
+          if (!$(this).hasClass('js-offcanvas-has-events')) {
+            selector = $(this).attr('data-target');
+            el = $(selector);
+            if (el) {
+              el.removeClass('in');
+              return $('body').css({
+                overflow: '',
+                position: ''
+              });
+            }
           }
-        }
+        });
       });
     });
-  });
+  })(window.jQuery, window);
 
 }).call(this);
