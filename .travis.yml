@@ -1,6 +1,13 @@
 language: node_js
 node_js:
   - "0.10"
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/a1bd2daeb4dbbb93a491
+    on_success: always
+    on_failure: always
+    on_start: false
 before_install:
   - npm install -g grunt-cli
   - npm install -g bower
