@@ -4,6 +4,10 @@
   "authors": [
     "Phil Hughes <me@iamphill.com>"
   ],
+  "main": [
+    "dist/css/bootstrap.offcanvas.min.css",
+    "dist/js/bootstrap.offcanvas.js"
+  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
