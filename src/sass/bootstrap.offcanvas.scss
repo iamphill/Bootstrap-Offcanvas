@@ -67,11 +67,12 @@
       box-shadow: none;
       padding: 0;
       overflow: hidden;
-      transition: all $offcanvas-animation-time ease-in;
+      transition: height $offcanvas-animation-time ease-in;
       height: 0;
 
       &.shown {
         height: auto;
+        margin-bottom: 10px;
       }
 
       > li > a {

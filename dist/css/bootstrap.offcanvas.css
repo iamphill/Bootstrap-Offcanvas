@@ -45,11 +45,12 @@
       box-shadow: none;
       padding: 0;
       overflow: hidden;
-      -webkit-transition: all 0.15s ease-in;
-              transition: all 0.15s ease-in;
+      -webkit-transition: height 0.15s ease-in;
+              transition: height 0.15s ease-in;
       height: 0; }
       .navbar-offcanvas .dropdown-menu.shown {
-        height: auto; }
+        height: auto;
+        margin-bottom: 10px; }
       .navbar-offcanvas .dropdown-menu > li > a {
         color: #777;
         padding: 5px 15px 5px 30px; } }
