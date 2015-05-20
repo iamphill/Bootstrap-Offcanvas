@@ -28,7 +28,6 @@
         this.element = element;
         this.location = location;
         this.offcanvas = offcanvas;
-        this._clearCss = __bind(this._clearCss, this);
         this._getFade = __bind(this._getFade, this);
         this._getCss = __bind(this._getCss, this);
         this._touchEnd = __bind(this._touchEnd, this);
@@ -145,6 +144,7 @@
         if (target) {
           this.target = $(target);
           if (this.target.length && !this.target.hasClass('js-offcanas-done')) {
+            this.target.height($(window).outerHeight());
             this.element.addClass('js-offcanvas-has-events');
             this.location = this.target.hasClass("navbar-offcanvas-right") ? "right" : "left";
             this.target.addClass(transform ? "offcanvas-transform js-offcanas-done" : "offcanvas-position js-offcanas-done");

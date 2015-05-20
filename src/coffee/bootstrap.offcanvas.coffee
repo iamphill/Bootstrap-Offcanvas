@@ -166,6 +166,10 @@
 
                 # Target must be available before running
                 if @target.length and !@target.hasClass 'js-offcanas-done'
+                    # For Android (And probably some other browsers)
+                    # The height of the element needs to be set to the window height
+                    @target.height $(window).outerHeight()
+                  
                     # Add class to element to say it already has events
                     @element.addClass 'js-offcanvas-has-events'
 

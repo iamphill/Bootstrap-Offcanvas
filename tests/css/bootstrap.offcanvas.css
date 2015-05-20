@@ -1,6 +1,6 @@
 @media (max-width: 2000px) {
   .navbar-offcanvas {
-    position: fixed;
+    position: absolute;
     height: 100%;
     width: 250px;
     max-width: 100%;
