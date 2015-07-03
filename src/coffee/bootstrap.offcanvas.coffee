@@ -208,7 +208,7 @@
             @_sendEventsBefore()
 
             # Hide all other off canvas menus
-            $(".navbar-offcanvas").removeClass 'in'
+            $(".navbar-offcanvas").not(@target).removeClass 'in'
 
             # Toggle in class
             @target.toggleClass 'in'
