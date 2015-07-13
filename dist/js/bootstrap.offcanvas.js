@@ -131,7 +131,7 @@
       return OffcanvasTouch;
 
     })();
-    Offcanvas = (function() {
+    window.Offcanvas = Offcanvas = (function() {
       function Offcanvas(element) {
         var t, target;
         this.element = element;
