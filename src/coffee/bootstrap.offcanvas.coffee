@@ -151,7 +151,7 @@
                 "opacity": ""
             }
 
-    class Offcanvas
+    window.Offcanvas = class Offcanvas
         #   Public: Constructor for offcanvas
         #
         #   @element - Element that toggles the offcanvas
