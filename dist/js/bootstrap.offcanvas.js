@@ -140,11 +140,11 @@
         this._sendEventsBefore = __bind(this._sendEventsBefore, this);
         this._documentClicked = __bind(this._documentClicked, this);
         this._clicked = __bind(this._clicked, this);
+        this._navbarHeight = __bind(this._navbarHeight, this);
         target = this.element.attr('data-target') ? this.element.attr('data-target') : false;
         if (target) {
           this.target = $(target);
           if (this.target.length && !this.target.hasClass('js-offcanas-done')) {
-            this.target.height($(window).outerHeight());
             this.element.addClass('js-offcanvas-has-events');
             this.location = this.target.hasClass("navbar-offcanvas-right") ? "right" : "left";
             this.target.addClass(transform ? "offcanvas-transform js-offcanas-done" : "offcanvas-position js-offcanas-done");
@@ -164,11 +164,20 @@
         }
       }
 
+      Offcanvas.prototype._navbarHeight = function() {
+        if (this.target.is('.in')) {
+          return this.target.height($(window).outerHeight());
+        } else {
+          return this.target.height('');
+        }
+      };
+
       Offcanvas.prototype._clicked = function(e) {
         e.preventDefault();
         this._sendEventsBefore();
         $(".navbar-offcanvas").not(this.target).removeClass('in');
         this.target.toggleClass('in');
+        this._navbarHeight();
         return this.bodyOverflow();
       };
 
@@ -180,6 +189,7 @@
             e.preventDefault();
             this._sendEventsBefore();
             this.target.removeClass('in');
+            this._navbarHeight();
             return this.bodyOverflow();
           }
         }
@@ -229,6 +239,15 @@
         var oc;
         return oc = new Offcanvas($(this));
       });
+      $(window).on('resize', function() {
+        $('body').css({
+          overflow: '',
+          position: ''
+        });
+        return $('.navbar-offcanvas.in').each(function() {
+          return $(this).height('').removeClass('in');
+        });
+      });
       return $('.offcanvas-toggle').each(function() {
         return $(this).on('click', function(e) {
           var el, selector;
@@ -236,6 +255,7 @@
             selector = $(this).attr('data-target');
             el = $(selector);
             if (el) {
+              el.height('');
               el.removeClass('in');
               return $('body').css({
                 overflow: '',

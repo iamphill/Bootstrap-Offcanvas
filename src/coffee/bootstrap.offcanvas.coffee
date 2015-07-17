@@ -165,11 +165,7 @@
                 @target = $(target)
 
                 # Target must be available before running
-                if @target.length and !@target.hasClass 'js-offcanas-done'
-                    # For Android (And probably some other browsers)
-                    # The height of the element needs to be set to the window height
-                    @target.height $(window).outerHeight()
-                  
+                if @target.length and !@target.hasClass 'js-offcanas-done'                  
                     # Add class to element to say it already has events
                     @element.addClass 'js-offcanvas-has-events'
 
@@ -199,6 +195,15 @@
                 # Just log a warning
                 console.warn 'Offcanvas: `data-target` attribute must be present.'
 
+        #   Private: Change height of navbar
+        _navbarHeight: =>
+          if @target.is '.in'
+            # For Android (And probably some other browsers)
+            # The height of the element needs to be set to the window height
+            @target.height $(window).outerHeight()
+          else
+            @target.height ''
+
         #   Private: Clicked element
         #
         #   e - Event data
@@ -212,6 +217,9 @@
 
             # Toggle in class
             @target.toggleClass 'in'
+            
+            @_navbarHeight()
+            
             @bodyOverflow()
 
         #   Private: Document click event to hide offcanvas
@@ -228,6 +236,7 @@
                     @_sendEventsBefore()
 
                     @target.removeClass 'in'
+                    @_navbarHeight()
                     @bodyOverflow()
 
         #   Private: Send before events
@@ -274,6 +283,13 @@
 
         $('[data-toggle="offcanvas"]').each ->
             oc = new Offcanvas $(this)
+            
+        $(window).on 'resize', ->
+          $('body').css 
+            overflow: ''
+            position: ''
+          $('.navbar-offcanvas.in').each ->
+            $(@).height('').removeClass 'in'
 
         $('.offcanvas-toggle').each ->
             $(this).on 'click', (e) ->
@@ -284,6 +300,7 @@
                     el = $(selector)
 
                     if el
+                        el.height ''
                         # Toggle class
                         el.removeClass 'in'
                         $('body').css
