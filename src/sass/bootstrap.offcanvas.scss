@@ -11,10 +11,10 @@
     z-index: 999;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    transition: all $offcanvas-animation-time ease-in;
+    @include transition(all $offcanvas-animation-time ease-in);
 
     &.in {
-      box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+      @include box-shadow(0 0 20px rgba(0, 0, 0, .3));
     }
 
     &.navbar-offcanvas-fade {
@@ -27,7 +27,7 @@
 
     &.offcanvas-transform {
       &.in {
-        transform: translateX($offcanvas-width);
+        @include transform(translateX($offcanvas-width));
       }
     }
 
@@ -42,7 +42,7 @@
       right: -$offcanvas-width;
 
       &.offcanvas-transform.in {
-        transform: translateX(-$offcanvas-width);
+        @include transform(translateX(-$offcanvas-width));
       }
 
       &.offcanvas-position.in {
@@ -67,7 +67,7 @@
       box-shadow: none;
       padding: 0;
       overflow: hidden;
-      transition: height $offcanvas-animation-time ease-in;
+      @include transition(height $offcanvas-animation-time ease-in);
       height: 0;
 
       &.shown {
@@ -94,7 +94,7 @@
     margin-right: 0;
 
     .icon-bar:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 4px);
+      @include transform(rotate(45deg) translate(5px, 4px));
     }
 
     .icon-bar:nth-child(2) {
@@ -102,7 +102,7 @@
     }
 
     .icon-bar:nth-child(3) {
-      transform: rotate(-45deg) translate(4px, -4px);
+      @include transform(rotate(-45deg) translate(4px, -4px));
     }
   }
 }
