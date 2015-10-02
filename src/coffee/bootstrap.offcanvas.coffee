@@ -220,6 +220,7 @@
 
             # Toggle in class
             @target.toggleClass 'in'
+            @element.toggleClass 'is-open'
             
             @_navbarHeight()
             

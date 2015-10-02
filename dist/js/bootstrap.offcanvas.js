@@ -182,6 +182,7 @@
         this._sendEventsBefore();
         $(".navbar-offcanvas").not(this.target).removeClass('in');
         this.target.toggleClass('in');
+        this.element.toggleClass('is-open');
         this._navbarHeight();
         return this.bodyOverflow();
       };

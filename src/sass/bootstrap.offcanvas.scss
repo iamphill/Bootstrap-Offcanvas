@@ -91,11 +91,10 @@
 
   .icon-bar {
     background: $offcanvas-toggle-bars-color;
+    transition: all .25s ease-in-out;
   }
 
-  &.offcanvas-toggle-close {
-    margin-right: 0;
-
+  &.is-open {
     .icon-bar:nth-child(1) {
       transform: rotate(45deg) translate(5px, 4px);
     }
