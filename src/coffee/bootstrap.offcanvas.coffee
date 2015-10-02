@@ -182,9 +182,8 @@
                     
                     # Remove then height on transition end
                     @target.on 'transitionend', =>
-                      console.log @target.is ':not(.in)'
-                      if @target.is ':not(.in)'
-                        @target.height ''
+                        if @target.is ':not(.in)'
+                            @target.height ''
 
                     # Click event on document
                     $(document).on "click", @_documentClicked

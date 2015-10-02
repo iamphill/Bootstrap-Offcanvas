@@ -4,10 +4,9 @@
   .navbar-inverse .navbar-offcanvas {
     background-color: #222; }
   .navbar-offcanvas {
-    position: absolute;
-    height: 100%;
-    width: 250px;
-    max-width: 100%;
+    position: fixed;
+    width: 100%;
+    max-width: 250px;
     left: -250px;
     top: 0;
     padding-left: 15px;
@@ -44,22 +43,14 @@
       border-bottom: 4px solid; }
     .navbar-offcanvas .dropdown-menu {
       position: relative;
-      display: block;
       width: 100%;
-      background: inherit;
       border: inherit;
       box-shadow: none;
-      padding: 0;
-      overflow: hidden;
       -webkit-transition: height 0.15s ease-in;
-              transition: height 0.15s ease-in;
-      height: 0; }
+              transition: height 0.15s ease-in; }
       .navbar-offcanvas .dropdown-menu.shown {
-        height: auto;
-        margin-bottom: 10px; }
-      .navbar-offcanvas .dropdown-menu > li > a {
-        color: #777;
-        padding: 5px 15px 5px 30px; } }
+        display: block;
+        margin-bottom: 10px; } }
 
 .offcanvas-toggle {
   background: #f8f8f8; }

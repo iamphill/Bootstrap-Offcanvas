@@ -152,7 +152,6 @@
             this.element.on("click", this._clicked);
             this.target.on('transitionend', (function(_this) {
               return function() {
-                console.log(_this.target.is(':not(.in)'));
                 if (_this.target.is(':not(.in)')) {
                   return _this.target.height('');
                 }

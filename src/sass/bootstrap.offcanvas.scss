@@ -14,14 +14,13 @@
   }
   
   .navbar-offcanvas {
-    position: absolute;
-    height: 100%;
-    width: $offcanvas-width;
-    max-width: 100%;
+    position: fixed;
+    width: 100%;
+    max-width: $offcanvas-width;
     left: -$offcanvas-width;
     top: 0;
-    padding-left: ($grid-gutter-width / 2);
-    padding-right: ($grid-gutter-width / 2);
+    padding-left: $navbar-padding-horizontal;
+    padding-right: $navbar-padding-horizontal;
     z-index: 999;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
@@ -74,24 +73,14 @@
 
     .dropdown-menu {
       position: relative;
-      display: block;
       width: 100%;
-      background: inherit;
       border: inherit;
       box-shadow: none;
-      padding: 0;
-      overflow: hidden;
       transition: height $offcanvas-animation-time ease-in;
-      height: 0;
 
       &.shown {
-        height: auto;
+        display: block;
         margin-bottom: 10px;
-      }
-
-      > li > a {
-        color: $navbar-default-link-color;
-        padding: ($navbar-padding-vertical - 5) $navbar-padding-horizontal ($navbar-padding-vertical - 5) ($navbar-padding-horizontal + 15);
       }
     }
   }
