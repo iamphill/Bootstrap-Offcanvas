@@ -1,6 +1,18 @@
 @import "vars";
 
 @media (max-width: $offcanvas-media) {
+  .navbar-default {
+    .navbar-offcanvas {
+      background-color: $navbar-default-bg;
+    }
+  }
+  
+  .navbar-inverse {
+    .navbar-offcanvas {
+      background-color: $navbar-inverse-bg;
+    }
+  }
+  
   .navbar-offcanvas {
     position: absolute;
     height: 100%;
@@ -8,8 +20,10 @@
     max-width: 100%;
     left: -$offcanvas-width;
     top: 0;
+    padding-left: ($grid-gutter-width / 2);
+    padding-right: ($grid-gutter-width / 2);
     z-index: 999;
-    overflow-y: scroll;
+    overflow: scroll;
     -webkit-overflow-scrolling: touch;
     transition: all $offcanvas-animation-time ease-in;
 

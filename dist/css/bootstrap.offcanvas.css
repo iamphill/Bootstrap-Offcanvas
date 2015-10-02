@@ -1,4 +1,8 @@
 @media (max-width: 767px) {
+  .navbar-default .navbar-offcanvas {
+    background-color: #f8f8f8; }
+  .navbar-inverse .navbar-offcanvas {
+    background-color: #222; }
   .navbar-offcanvas {
     position: absolute;
     height: 100%;
@@ -6,8 +10,10 @@
     max-width: 100%;
     left: -250px;
     top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
     z-index: 999;
-    overflow-y: scroll;
+    overflow: scroll;
     -webkit-overflow-scrolling: touch;
     -webkit-transition: all 0.15s ease-in;
             transition: all 0.15s ease-in; }

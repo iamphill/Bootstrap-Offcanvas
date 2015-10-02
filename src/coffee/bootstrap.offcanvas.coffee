@@ -179,6 +179,12 @@
 
                     # Click event on element
                     @element.on "click", @_clicked
+                    
+                    # Remove then height on transition end
+                    @target.on 'transitionend', =>
+                      console.log @target.is ':not(.in)'
+                      if @target.is ':not(.in)'
+                        @target.height ''
 
                     # Click event on document
                     $(document).on "click", @_documentClicked
@@ -201,8 +207,6 @@
             # For Android (And probably some other browsers)
             # The height of the element needs to be set to the window height
             @target.height $(window).outerHeight()
-          else
-            @target.height ''
 
         #   Private: Clicked element
         #

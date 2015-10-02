@@ -150,6 +150,14 @@
             this.target.addClass(transform ? "offcanvas-transform js-offcanas-done" : "offcanvas-position js-offcanas-done");
             this.target.data('offcanvas', this);
             this.element.on("click", this._clicked);
+            this.target.on('transitionend', (function(_this) {
+              return function() {
+                console.log(_this.target.is(':not(.in)'));
+                if (_this.target.is(':not(.in)')) {
+                  return _this.target.height('');
+                }
+              };
+            })(this));
             $(document).on("click", this._documentClicked);
             if (this.target.hasClass('navbar-offcanvas-touch')) {
               t = new OffcanvasTouch(this.target, this.location, this);
@@ -167,8 +175,6 @@
       Offcanvas.prototype._navbarHeight = function() {
         if (this.target.is('.in')) {
           return this.target.height($(window).outerHeight());
-        } else {
-          return this.target.height('');
         }
       };
 
