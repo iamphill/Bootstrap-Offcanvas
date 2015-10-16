@@ -23,10 +23,11 @@
     class OffcanvasTouch
         #   Public: Constructor for offcanvas
         #
+        #   @button - Toggle button element
         #   @element - Element that toggles the offcanvas
         #   @location - Location of offcanvas (Left/Right)
         #   @offcanvas - Offcanvas class ref
-        constructor: (@element, @location, @offcanvas) ->
+        constructor: (@button, @element, @location, @offcanvas) ->
             @endThreshold = 130
             @startThreshold = if @element.hasClass 'navbar-offcanvas-right' then $("body").outerWidth() - 60 else 20
             @maxStartThreshold = if @element.hasClass 'navbar-offcanvas-right' then $("body").outerWidth() - 20 else 60
@@ -49,7 +50,7 @@
         #   e - Event target
         _touchStart: (e) =>
             @startX = e.originalEvent.touches[0].pageX
-            
+
             # Change the height of the offcanvas on touch start
             @element.height $(window).outerHeight()
 
@@ -80,8 +81,6 @@
                     @element.css @_getCss x
                     @element.css @_getFade x
 
-
-
         #   Private: Touch end
         #
         #   e - Event target
@@ -97,12 +96,14 @@
                 # Show or hide the element
                 @element.removeClass 'in'
                     .css @_clearCss()
+                @button.removeClass 'is-open'
             else if Math.abs(x - @startX) > @endThreshold and @startX > @startThreshold and @startX < @maxStartThreshold
                 @currentX = if @element.hasClass 'navbar-offcanvas-right' then -@element.outerWidth() else @element.outerWidth()
 
                 # Show or hide the element
                 @element.toggleClass 'in'
                     .css @_clearCss()
+                @button.toggleClass 'is-open'
             else
                 @element.css @_clearCss()
 
@@ -168,7 +169,7 @@
                 @target = $(target)
 
                 # Target must be available before running
-                if @target.length and !@target.hasClass 'js-offcanas-done'                  
+                if @target.length and !@target.hasClass 'js-offcanas-done'
                     # Add class to element to say it already has events
                     @element.addClass 'js-offcanvas-has-events'
 
@@ -182,7 +183,7 @@
 
                     # Click event on element
                     @element.on "click", @_clicked
-                    
+
                     # Remove then height on transition end
                     @target.on 'transitionend', =>
                         if @target.is ':not(.in)'
@@ -194,7 +195,7 @@
                     # Should touch be added to this target
                     if @target.hasClass 'navbar-offcanvas-touch'
                         # Create touch class
-                        t = new OffcanvasTouch @target, @location, @
+                        t = new OffcanvasTouch @element, @target, @location, @
 
                     # Get all dropdown menu links and create a class for them
                     @target.find(".dropdown-toggle").each ->
@@ -224,9 +225,9 @@
             # Toggle in class
             @target.toggleClass 'in'
             @element.toggleClass 'is-open'
-            
+
             @_navbarHeight()
-            
+
             @bodyOverflow()
 
         #   Private: Document click event to hide offcanvas
@@ -243,6 +244,7 @@
                     @_sendEventsBefore()
 
                     @target.removeClass 'in'
+                    @element.removeClass 'is-open'
                     @_navbarHeight()
                     @bodyOverflow()
 
@@ -266,10 +268,6 @@
         bodyOverflow: =>
             @_sendEventsAfter()
 
-            $("body").css
-                overflow: if @target.hasClass 'in' then 'hidden' else ''
-                position: if @target.hasClass 'in' then 'fixed' else ''
-
 
     #   Transform checker
     #
@@ -290,11 +288,8 @@
 
         $('[data-toggle="offcanvas"]').each ->
             oc = new Offcanvas $(this)
-            
+
         $(window).on 'resize', ->
-          $('body').css 
-            overflow: ''
-            position: ''
           $('.navbar-offcanvas.in').each ->
             $(@).height('').removeClass 'in'
 
