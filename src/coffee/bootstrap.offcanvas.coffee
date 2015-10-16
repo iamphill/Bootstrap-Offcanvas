@@ -165,7 +165,7 @@
                 @target = $(target)
 
                 # Target must be available before running
-                if @target.length and !@target.hasClass 'js-offcanas-done'                  
+                if @target.length and !@target.hasClass 'js-offcanas-done'
                     # Add class to element to say it already has events
                     @element.addClass 'js-offcanvas-has-events'
 
@@ -217,9 +217,9 @@
 
             # Toggle in class
             @target.toggleClass 'in'
-            
+
             @_navbarHeight()
-            
+
             @bodyOverflow()
 
         #   Private: Document click event to hide offcanvas
@@ -241,6 +241,7 @@
 
         #   Private: Send before events
         _sendEventsBefore: =>
+            getScrollXY()
             # Send events
             if @target.hasClass 'in'
                 @target.trigger 'show.bs.offcanvas'
@@ -259,9 +260,14 @@
         bodyOverflow: =>
             @_sendEventsAfter()
 
+            $(".navbar-offcanvas").css
+              top: window.myScrollY
             $("body").css
                 overflow: if @target.hasClass 'in' then 'hidden' else ''
                 position: if @target.hasClass 'in' then 'fixed' else ''
+                top: if @target.hasClass 'in' then -1 * window.myScrollY else ''
+            window.scrollTo(0, window.myScrollY);
+
 
 
     #   Transform checker
@@ -277,15 +283,37 @@
 
         @transform = asSupport.length?
 
+    #   Scrollposition
+    #
+    #   Checks Scrollposition
+    getScrollXY = =>
+        if $('body').css('position') != 'fixed'
+            scrOfX = 0
+            scrOfY = 0
+            if typeof window.pageYOffset  == 'number'
+              scrOfY = window.pageYOffset
+              scrOfX = window.pageXOffset
+            else
+              if document.body && ( document.body.scrollLeft || document.body.scrollTop )
+                scrOfY = document.body.scrollTop;
+                scrOfX = document.body.scrollLeft;
+              else
+                if document.documentElement && ( document.documentElement.scrollLeft || document.documentElement.scrollTop )
+                  scrOfY = document.documentElement.scrollTop;
+                  scrOfX = document.documentElement.scrollLeft;
+            window.myScrollY = scrOfY
+
+        window.myScrollY
+
     $ ->
         # Work out if transform3d is available for use
         transformCheck()
 
         $('[data-toggle="offcanvas"]').each ->
             oc = new Offcanvas $(this)
-            
+
         $(window).on 'resize', ->
-          $('body').css 
+          $('body').css
             overflow: ''
             position: ''
           $('.navbar-offcanvas.in').each ->
@@ -306,5 +334,4 @@
                         $('body').css
                             overflow: ''
                             position: ''
-
 ) window.jQuery, window
