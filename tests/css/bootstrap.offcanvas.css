@@ -1,13 +1,18 @@
 @media (max-width: 2000px) {
+  .navbar-default .navbar-offcanvas {
+    background-color: #f8f8f8; }
+  .navbar-inverse .navbar-offcanvas {
+    background-color: #222; }
   .navbar-offcanvas {
-    position: absolute;
-    height: 100%;
-    width: 250px;
-    max-width: 100%;
+    position: fixed;
+    width: 100%;
+    max-width: 250px;
     left: -250px;
     top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
     z-index: 999;
-    overflow-y: scroll;
+    overflow: scroll;
     -webkit-overflow-scrolling: touch;
     -webkit-transition: all 0s ease-in;
             transition: all 0s ease-in; }
@@ -38,36 +43,28 @@
       border-bottom: 4px solid; }
     .navbar-offcanvas .dropdown-menu {
       position: relative;
-      display: block;
       width: 100%;
-      background: inherit;
       border: inherit;
       box-shadow: none;
-      padding: 0;
-      overflow: hidden;
       -webkit-transition: height 0s ease-in;
-              transition: height 0s ease-in;
-      height: 0; }
+              transition: height 0s ease-in; }
       .navbar-offcanvas .dropdown-menu.shown {
-        height: auto;
-        margin-bottom: 10px; }
-      .navbar-offcanvas .dropdown-menu > li > a {
-        color: #777;
-        padding: 5px 15px 5px 30px; } }
+        display: block;
+        margin-bottom: 10px; } }
 
 .offcanvas-toggle {
   background: #f8f8f8; }
   .offcanvas-toggle .icon-bar {
-    background: #000; }
-  .offcanvas-toggle.offcanvas-toggle-close {
-    margin-right: 0; }
-    .offcanvas-toggle.offcanvas-toggle-close .icon-bar:nth-child(1) {
-      -webkit-transform: rotate(45deg) translate(5px, 4px);
-          -ms-transform: rotate(45deg) translate(5px, 4px);
-              transform: rotate(45deg) translate(5px, 4px); }
-    .offcanvas-toggle.offcanvas-toggle-close .icon-bar:nth-child(2) {
-      opacity: 0; }
-    .offcanvas-toggle.offcanvas-toggle-close .icon-bar:nth-child(3) {
-      -webkit-transform: rotate(-45deg) translate(4px, -4px);
-          -ms-transform: rotate(-45deg) translate(4px, -4px);
-              transform: rotate(-45deg) translate(4px, -4px); }
+    background: #000;
+    -webkit-transition: all 0.25s ease-in-out;
+            transition: all 0.25s ease-in-out; }
+  .offcanvas-toggle.is-open .icon-bar:nth-child(1) {
+    -webkit-transform: rotate(45deg) translate(5px, 4px);
+        -ms-transform: rotate(45deg) translate(5px, 4px);
+            transform: rotate(45deg) translate(5px, 4px); }
+  .offcanvas-toggle.is-open .icon-bar:nth-child(2) {
+    opacity: 0; }
+  .offcanvas-toggle.is-open .icon-bar:nth-child(3) {
+    -webkit-transform: rotate(-45deg) translate(4px, -4px);
+        -ms-transform: rotate(-45deg) translate(4px, -4px);
+            transform: rotate(-45deg) translate(4px, -4px); }

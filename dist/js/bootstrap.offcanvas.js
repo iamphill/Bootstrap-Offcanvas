@@ -24,7 +24,8 @@
 
     })();
     OffcanvasTouch = (function() {
-      function OffcanvasTouch(element, location, offcanvas) {
+      function OffcanvasTouch(button, element, location, offcanvas) {
+        this.button = button;
         this.element = element;
         this.location = location;
         this.offcanvas = offcanvas;
@@ -44,7 +45,8 @@
       }
 
       OffcanvasTouch.prototype._touchStart = function(e) {
-        return this.startX = e.originalEvent.touches[0].pageX;
+        this.startX = e.originalEvent.touches[0].pageX;
+        return this.element.height($(window).outerHeight());
       };
 
       OffcanvasTouch.prototype._touchMove = function(e) {
@@ -81,9 +83,11 @@
         if (this.element.hasClass('in') && end) {
           this.currentX = 0;
           this.element.removeClass('in').css(this._clearCss());
+          this.button.removeClass('is-open');
         } else if (Math.abs(x - this.startX) > this.endThreshold && this.startX > this.startThreshold && this.startX < this.maxStartThreshold) {
           this.currentX = this.element.hasClass('navbar-offcanvas-right') ? -this.element.outerWidth() : this.element.outerWidth();
           this.element.toggleClass('in').css(this._clearCss());
+          this.button.toggleClass('is-open');
         } else {
           this.element.css(this._clearCss());
         }
@@ -150,9 +154,16 @@
             this.target.addClass(transform ? "offcanvas-transform js-offcanas-done" : "offcanvas-position js-offcanas-done");
             this.target.data('offcanvas', this);
             this.element.on("click", this._clicked);
+            this.target.on('transitionend', (function(_this) {
+              return function() {
+                if (_this.target.is(':not(.in)')) {
+                  return _this.target.height('');
+                }
+              };
+            })(this));
             $(document).on("click", this._documentClicked);
             if (this.target.hasClass('navbar-offcanvas-touch')) {
-              t = new OffcanvasTouch(this.target, this.location, this);
+              t = new OffcanvasTouch(this.element, this.target, this.location, this);
             }
             this.target.find(".dropdown-toggle").each(function() {
               var d;
@@ -167,8 +178,6 @@
       Offcanvas.prototype._navbarHeight = function() {
         if (this.target.is('.in')) {
           return this.target.height($(window).outerHeight());
-        } else {
-          return this.target.height('');
         }
       };
 
@@ -177,6 +186,7 @@
         this._sendEventsBefore();
         $(".navbar-offcanvas").not(this.target).removeClass('in');
         this.target.toggleClass('in');
+        this.element.toggleClass('is-open');
         this._navbarHeight();
         return this.bodyOverflow();
       };
@@ -189,6 +199,7 @@
             e.preventDefault();
             this._sendEventsBefore();
             this.target.removeClass('in');
+            this.element.removeClass('is-open');
             this._navbarHeight();
             return this.bodyOverflow();
           }
@@ -212,11 +223,7 @@
       };
 
       Offcanvas.prototype.bodyOverflow = function() {
-        this._sendEventsAfter();
-        return $("body").css({
-          overflow: this.target.hasClass('in') ? 'hidden' : '',
-          position: this.target.hasClass('in') ? 'fixed' : ''
-        });
+        return this._sendEventsAfter();
       };
 
       return Offcanvas;
@@ -240,10 +247,6 @@
         return oc = new Offcanvas($(this));
       });
       $(window).on('resize', function() {
-        $('body').css({
-          overflow: '',
-          position: ''
-        });
         return $('.navbar-offcanvas.in').each(function() {
           return $(this).height('').removeClass('in');
         });

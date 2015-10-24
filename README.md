@@ -33,14 +33,16 @@ Add the JavaScript from the **dist** folder to your HTML document.
 In the HTML itself there needs to a button or something to trigger the menu.
 **NOTE: It can be ANY HTML element**
 
-The below example is the exact same markup as from the Bootstrap docs. The only differences are the `data-toggle`, `data-target` attributes and `offcanvas-toggle` class.
+The below example is the exact same markup as from the Bootstrap docs. The only differences are the `data-toggle`, `data-target` attributes and `offcanvas-toggle` class. *Note: The `.icon-bar`s need to be wrapped in an element for the close icon to correctly show.*
 
 ```html
 <button type="button" class="navbar-toggle offcanvas-toggle" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">
     <span class="sr-only">Toggle navigation</span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
+    <span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </span>
 </button>
 ```
 
@@ -51,8 +53,11 @@ Finally, the nav HTML should be as follows. The only things needed are:
 **NOTE: This can also be any element as long as the classes and attributes are correct**
 
 ```html
-<nav class="navbar navbar-default navbar-offcanvas" role="navigation" id="js-bootstrap-offcanvas">
+<nav class="navbar navbar-default" role="navigation">
     ...
+    <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
+        ...
+    </div>
 </nav>
 ```
 
@@ -85,7 +90,7 @@ You can have another button somewhere on the page that will toggle the status of
 **NOTE: The plugin doesn't know which one you want as the main button to toggle the offcanvas. So it instead just uses the first it finds for the specified target element**
 
 ```html
-<button type="button" class="navbar-toggle offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas" style="float:left;">
+<button type="button" class="navbar-toggle offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">
     <span class="sr-only">Toggle navigation</span>
     <i class="glyphicon glyphicon-remove"></i>
 </button>
@@ -164,11 +169,3 @@ There is one media query and this uses the Bootstrap `$screen-xs-max` variable. 
 ## Tests
 
 Open [tests/index.html](https://github.com/iamphill/Bootstrap-Offcanvas/blob/master/tests/index.html) to run the tests.
-
-## Todo
-
-- [x] Style dropdown menus
-- [ ] ~~Fade out content behind off canvas menu when pulled out~~ - This has been decided against. If required, please open an issue.
-- [x] Different transitions and animations when pulling out and hiding
-- [x] Swipe to pull menu out
-- [x] Multiple touch events
