@@ -223,6 +223,11 @@
       };
 
       Offcanvas.prototype.bodyOverflow = function() {
+        if (this.target.is('.in')) {
+          $('body').addClass('offcanvas-stop-scrolling');
+        } else {
+          $('body').removeClass('offcanvas-stop-scrolling');
+        }
         return this._sendEventsAfter();
       };
 

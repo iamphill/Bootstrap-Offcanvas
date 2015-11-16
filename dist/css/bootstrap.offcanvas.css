@@ -1,4 +1,7 @@
 @media (max-width: 767px) {
+  .offcanvas-stop-scrolling {
+    height: 100%;
+    overflow: hidden; }
   .navbar-default .navbar-offcanvas {
     background-color: #f8f8f8; }
   .navbar-inverse .navbar-offcanvas {
@@ -56,8 +59,8 @@
   background: #f8f8f8; }
   .offcanvas-toggle .icon-bar {
     background: #000;
-    -webkit-transition: all 0.25s ease-in-out;
-            transition: all 0.25s ease-in-out; }
+    -webkit-transition: all .25s ease-in-out;
+            transition: all .25s ease-in-out; }
   .offcanvas-toggle.is-open .icon-bar:nth-child(1) {
     -webkit-transform: rotate(45deg) translate(5px, 4px);
         -ms-transform: rotate(45deg) translate(5px, 4px);

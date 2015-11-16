@@ -266,6 +266,11 @@
 
         #   Public: Overflow on body
         bodyOverflow: =>
+            if @target.is '.in'
+                $('body').addClass 'offcanvas-stop-scrolling'
+            else
+                $('body').removeClass 'offcanvas-stop-scrolling'
+
             @_sendEventsAfter()
 
 

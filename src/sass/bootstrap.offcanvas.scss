@@ -1,18 +1,23 @@
 @import "vars";
 
 @media (max-width: $offcanvas-media) {
+  .offcanvas-stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
+
   .navbar-default {
     .navbar-offcanvas {
       background-color: $navbar-default-bg;
     }
   }
-  
+
   .navbar-inverse {
     .navbar-offcanvas {
       background-color: $navbar-inverse-bg;
     }
   }
-  
+
   .navbar-offcanvas {
     position: fixed;
     width: 100%;
