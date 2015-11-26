@@ -139,6 +139,14 @@ There are four different events that are triggered on the nav element. These fol
 | hide.bs.offcanvas      | Fire before the offcanvas menu is hidden  |
 | hidden.bs.offcanvas    | Fire after the offcanvas menu is hidden   |
 
+### Trigger events
+
+If you want to toggle the offcanvas yourself, you can trigger an event on the menu element. See below.
+
+```js
+$("#js-bootstrap-offcanvas").trigger("offcanvas.toggle");
+```
+
 
 ## Running example
 

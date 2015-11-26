@@ -200,6 +200,10 @@
                     # Get all dropdown menu links and create a class for them
                     @target.find(".dropdown-toggle").each ->
                         d = new OffcanvasDropdown @
+
+                    # Listen for a triggered event
+                    @target.on 'offcanvas.toggle', (e) =>
+                        @._clicked e
             else
                 # Just log a warning
                 console.warn 'Offcanvas: `data-target` attribute must be present.'

@@ -169,6 +169,11 @@
               var d;
               return d = new OffcanvasDropdown(this);
             });
+            this.target.on('offcanvas.toggle', (function(_this) {
+              return function(e) {
+                return _this._clicked(e);
+              };
+            })(this));
           }
         } else {
           console.warn('Offcanvas: `data-target` attribute must be present.');
