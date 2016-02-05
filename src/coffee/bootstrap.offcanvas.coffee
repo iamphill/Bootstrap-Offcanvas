@@ -169,14 +169,14 @@
                 @target = $(target)
 
                 # Target must be available before running
-                if @target.length and !@target.hasClass 'js-offcanas-done'
+                if @target.length and !@target.hasClass 'js-offcanvas-done'
                     # Add class to element to say it already has events
                     @element.addClass 'js-offcanvas-has-events'
 
                     # Get the location of the offcanvas menu
                     @location = if @target.hasClass "navbar-offcanvas-right" then "right" else "left"
 
-                    @target.addClass if transform then "offcanvas-transform js-offcanas-done" else "offcanvas-position js-offcanas-done"
+                    @target.addClass if transform then "offcanvas-transform js-offcanvas-done" else "offcanvas-position js-offcanvas-done"
 
                     # Add some data
                     @target.data 'offcanvas', @
