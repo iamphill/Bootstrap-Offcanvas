@@ -148,10 +148,10 @@
         target = this.element.attr('data-target') ? this.element.attr('data-target') : false;
         if (target) {
           this.target = $(target);
-          if (this.target.length && !this.target.hasClass('js-offcanas-done')) {
+          if (this.target.length && !this.target.hasClass('js-offcanvas-done')) {
             this.element.addClass('js-offcanvas-has-events');
             this.location = this.target.hasClass("navbar-offcanvas-right") ? "right" : "left";
-            this.target.addClass(transform ? "offcanvas-transform js-offcanas-done" : "offcanvas-position js-offcanas-done");
+            this.target.addClass(transform ? "offcanvas-transform js-offcanvas-done" : "offcanvas-position js-offcanvas-done");
             this.target.data('offcanvas', this);
             this.element.on("click", this._clicked);
             this.target.on('transitionend', (function(_this) {
