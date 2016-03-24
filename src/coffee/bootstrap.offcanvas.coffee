@@ -203,7 +203,10 @@
 
                     # Listen for a triggered event
                     @target.on 'offcanvas.toggle', (e) =>
-                        @._clicked e
+                        @_clicked e
+
+                    @target.on 'offcanvas.close', (e) =>
+                        @_close e
             else
                 # Just log a warning
                 console.warn 'Offcanvas: `data-target` attribute must be present.'
@@ -229,6 +232,19 @@
             # Toggle in class
             @target.toggleClass 'in'
             @element.toggleClass 'is-open'
+
+            @_navbarHeight()
+
+            @bodyOverflow()
+
+        _close: (e) =>
+            e.preventDefault()
+
+            @_sendEventsBefore()
+
+            # Toggle in class
+            @target.removeClass 'in'
+            @element.removeClass 'is-open'
 
             @_navbarHeight()
 
