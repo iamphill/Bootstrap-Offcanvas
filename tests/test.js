@@ -45,6 +45,17 @@
         assert.ok(!$("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should not be visible");
     });
 
+    test("Events to show & hide offcanvas", function (assert) {
+        assert.expect(2);
+        $("#js-bootstrap-offcanvas").trigger("offcanvas.open");
+
+        assert.ok($("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should be visible");
+
+        $("#js-bootstrap-offcanvas").trigger("offcanvas.close");
+
+        assert.ok(!$("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should not be visible");
+    });
+
     test("Toggle event hide offcanvas if already shown", function (assert) {
         assert.expect(2);
         $("#offcanvas-toggle").trigger("click");

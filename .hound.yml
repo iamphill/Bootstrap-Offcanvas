@@ -4,5 +4,5 @@ scss:
 coffee_script:
   config_file: .coffee.json
 
-java_script:
+javascript:
   enabled: false
