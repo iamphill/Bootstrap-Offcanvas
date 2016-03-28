@@ -143,6 +143,8 @@
         this._sendEventsAfter = __bind(this._sendEventsAfter, this);
         this._sendEventsBefore = __bind(this._sendEventsBefore, this);
         this._documentClicked = __bind(this._documentClicked, this);
+        this._close = __bind(this._close, this);
+        this._open = __bind(this._open, this);
         this._clicked = __bind(this._clicked, this);
         this._navbarHeight = __bind(this._navbarHeight, this);
         target = this.element.attr('data-target') ? this.element.attr('data-target') : false;
@@ -174,6 +176,16 @@
                 return _this._clicked(e);
               };
             })(this));
+            this.target.on('offcanvas.close', (function(_this) {
+              return function(e) {
+                return _this._close(e);
+              };
+            })(this));
+            this.target.on('offcanvas.open', (function(_this) {
+              return function(e) {
+                return _this._open(e);
+              };
+            })(this));
           }
         } else {
           console.warn('Offcanvas: `data-target` attribute must be present.');
@@ -192,6 +204,30 @@
         $(".navbar-offcanvas").not(this.target).removeClass('in');
         this.target.toggleClass('in');
         this.element.toggleClass('is-open');
+        this._navbarHeight();
+        return this.bodyOverflow();
+      };
+
+      Offcanvas.prototype._open = function(e) {
+        e.preventDefault();
+        if (this.target.is('.in')) {
+          return;
+        }
+        this._sendEventsBefore();
+        this.target.addClass('in');
+        this.element.addClass('is-open');
+        this._navbarHeight();
+        return this.bodyOverflow();
+      };
+
+      Offcanvas.prototype._close = function(e) {
+        e.preventDefault();
+        if (this.target.is(':not(.in)')) {
+          return;
+        }
+        this._sendEventsBefore();
+        this.target.removeClass('in');
+        this.element.removeClass('is-open');
         this._navbarHeight();
         return this.bodyOverflow();
       };

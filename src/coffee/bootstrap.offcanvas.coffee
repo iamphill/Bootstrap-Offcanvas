@@ -207,6 +207,9 @@
 
                     @target.on 'offcanvas.close', (e) =>
                         @_close e
+
+                    @target.on 'offcanvas.open', (e) =>
+                        @_open e
             else
                 # Just log a warning
                 console.warn 'Offcanvas: `data-target` attribute must be present.'
@@ -237,8 +240,23 @@
 
             @bodyOverflow()
 
+        _open: (e) =>
+            e.preventDefault()
+            return if @target.is '.in'
+
+            @_sendEventsBefore()
+
+            # Toggle in class
+            @target.addClass 'in'
+            @element.addClass 'is-open'
+
+            @_navbarHeight()
+
+            @bodyOverflow()
+
         _close: (e) =>
             e.preventDefault()
+            return if @target.is ':not(.in)'
 
             @_sendEventsBefore()
 
