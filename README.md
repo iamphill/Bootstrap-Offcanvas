@@ -146,7 +146,7 @@ If you want to toggle the offcanvas yourself, you can trigger an event on the me
 ```js
 $("#js-bootstrap-offcanvas").trigger("offcanvas.toggle"); // Toggle open & close
 $("#js-bootstrap-offcanvas").trigger("offcanvas.open"); // Open the menu
-$("#js-bootstrap-offcanvas").trigger("offcanvas.close); // Close the menu
+$("#js-bootstrap-offcanvas").trigger("offcanvas.close"); // Close the menu
 ```
 
 
