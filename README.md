@@ -144,7 +144,9 @@ There are four different events that are triggered on the nav element. These fol
 If you want to toggle the offcanvas yourself, you can trigger an event on the menu element. See below.
 
 ```js
-$("#js-bootstrap-offcanvas").trigger("offcanvas.toggle");
+$("#js-bootstrap-offcanvas").trigger("offcanvas.toggle"); // Toggle open & close
+$("#js-bootstrap-offcanvas").trigger("offcanvas.open"); // Open the menu
+$("#js-bootstrap-offcanvas").trigger("offcanvas.close); // Close the menu
 ```
 
 
