@@ -5,7 +5,7 @@
     "Phil Hughes <me@iamphill.com>"
   ],
   "main": [
-    "dist/css/bootstrap.offcanvas.min.css",
+    "dist/css/bootstrap.offcanvas.css",
     "dist/js/bootstrap.offcanvas.js"
   ],
   "license": "MIT",
