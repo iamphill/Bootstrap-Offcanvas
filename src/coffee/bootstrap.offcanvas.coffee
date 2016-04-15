@@ -51,8 +51,9 @@
         _touchStart: (e) =>
             @startX = e.originalEvent.touches[0].pageX
 
-            # Change the height of the offcanvas on touch start
-            @element.height $(window).outerHeight()
+            if @element.is '.in'
+                # Change the height of the offcanvas on touch start
+                @element.height $(window).outerHeight()
 
         #   Private: Touch move
         #

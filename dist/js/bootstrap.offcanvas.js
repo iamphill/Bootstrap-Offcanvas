@@ -46,7 +46,9 @@
 
       OffcanvasTouch.prototype._touchStart = function(e) {
         this.startX = e.originalEvent.touches[0].pageX;
-        return this.element.height($(window).outerHeight());
+        if (this.element.is('.in')) {
+          return this.element.height($(window).outerHeight());
+        }
       };
 
       OffcanvasTouch.prototype._touchMove = function(e) {
