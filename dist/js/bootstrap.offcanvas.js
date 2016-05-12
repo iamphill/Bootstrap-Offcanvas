@@ -8,6 +8,7 @@
         this.element = element;
         this._clickEvent = __bind(this._clickEvent, this);
         this.element = $(this.element);
+        this.nav = this.element.closest(".nav");
         this.dropdown = this.element.parent().find(".dropdown-menu");
         this.element.on('click', this._clickEvent);
       }
@@ -16,6 +17,7 @@
         if (!this.dropdown.hasClass('shown')) {
           e.preventDefault();
         }
+        $('.dropdown-toggle').not(this.element).closest('.active').removeClass('active').find('.dropdown-menu').removeClass('shown');
         this.dropdown.toggleClass("shown");
         return this.element.parent().toggleClass('active');
       };
@@ -203,7 +205,7 @@
       Offcanvas.prototype._clicked = function(e) {
         e.preventDefault();
         this._sendEventsBefore();
-        $(".navbar-offcanvas").not(this.target).removeClass('in');
+        $(".navbar-offcanvas").not(this.target).trigger('offcanvas.close');
         this.target.toggleClass('in');
         this.element.toggleClass('is-open');
         this._navbarHeight();

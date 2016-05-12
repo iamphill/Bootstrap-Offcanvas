@@ -5,6 +5,7 @@
         #   @element - Element that toggles the offcanvas
         constructor: (@element) ->
             @element = $ @element
+            @nav = @element.closest ".nav"
 
             # Get dropdown element
             @dropdown = @element.parent().find ".dropdown-menu"
@@ -15,6 +16,13 @@
         #   Private: Click event on link
         _clickEvent: (e) =>
             e.preventDefault() if !@dropdown.hasClass 'shown'
+
+            # Hide currently visible dropdown menus
+            $('.dropdown-toggle').not(@element)
+              .closest('.active')
+              .removeClass 'active'
+              .find '.dropdown-menu'
+              .removeClass 'shown'
 
             # Show or hide element
             @dropdown.toggleClass "shown"
@@ -231,7 +239,7 @@
             @_sendEventsBefore()
 
             # Hide all other off canvas menus
-            $(".navbar-offcanvas").not(@target).removeClass 'in'
+            $(".navbar-offcanvas").not(@target).trigger 'offcanvas.close'
 
             # Toggle in class
             @target.toggleClass 'in'

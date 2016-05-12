@@ -29,6 +29,26 @@
 
         assert.ok($("#js-dropdown-test").parent().hasClass("active"), "Dropdown menu should be visible");
         assert.ok($("#js-dropdown-test").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should be hidden");
+        $("#js-dropdown-test").trigger("click");
+    });
+
+    test("Dropdown show only one", function (assert) {
+        assert.expect(6);
+        $("#js-dropdown-test").trigger("click");
+
+        assert.ok($("#js-dropdown-test").parent().hasClass("active"), "Dropdown menu should be visible");
+        assert.ok($("#js-dropdown-test").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should be hidden");
+
+        $("#js-dropdown-test2").trigger("click");
+
+        assert.ok($("#js-dropdown-test2").parent().hasClass("active"), "Dropdown menu should be visible");
+        assert.ok($("#js-dropdown-test2").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should be hidden");
+
+        assert.ok($("#js-dropdown-test").parent().is(":not(.active)"));
+        assert.ok($("#js-dropdown-test").parent().find(".dropdown-menu").is(":not(.shown)"));
+
+        $("#js-dropdown-test2").trigger("click");
+        $("#js-dropdown-test").trigger("click");
     });
 
     test("Toggle event show offcanvas", function (assert) {
