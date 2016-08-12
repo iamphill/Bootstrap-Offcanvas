@@ -344,6 +344,7 @@
         $(window).on 'resize', ->
           $('.navbar-offcanvas.in').each ->
             $(@).height('').removeClass 'in'
+          $('.offcanvas-toggle').removeClass 'is-open'
 
         $('.offcanvas-toggle').each ->
             $(this).on 'click', (e) ->
