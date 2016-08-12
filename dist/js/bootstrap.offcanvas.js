@@ -1,12 +1,12 @@
 (function() {
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   (function($, window) {
     var Offcanvas, OffcanvasDropdown, OffcanvasTouch, transformCheck;
     OffcanvasDropdown = (function() {
       function OffcanvasDropdown(element) {
         this.element = element;
-        this._clickEvent = __bind(this._clickEvent, this);
+        this._clickEvent = bind(this._clickEvent, this);
         this.element = $(this.element);
         this.nav = this.element.closest(".nav");
         this.dropdown = this.element.parent().find(".dropdown-menu");
@@ -31,11 +31,11 @@
         this.element = element;
         this.location = location;
         this.offcanvas = offcanvas;
-        this._getFade = __bind(this._getFade, this);
-        this._getCss = __bind(this._getCss, this);
-        this._touchEnd = __bind(this._touchEnd, this);
-        this._touchMove = __bind(this._touchMove, this);
-        this._touchStart = __bind(this._touchStart, this);
+        this._getFade = bind(this._getFade, this);
+        this._getCss = bind(this._getCss, this);
+        this._touchEnd = bind(this._touchEnd, this);
+        this._touchMove = bind(this._touchMove, this);
+        this._touchStart = bind(this._touchStart, this);
         this.endThreshold = 130;
         this.startThreshold = this.element.hasClass('navbar-offcanvas-right') ? $("body").outerWidth() - 60 : 20;
         this.maxStartThreshold = this.element.hasClass('navbar-offcanvas-right') ? $("body").outerWidth() - 20 : 60;
@@ -143,14 +143,14 @@
       function Offcanvas(element) {
         var t, target;
         this.element = element;
-        this.bodyOverflow = __bind(this.bodyOverflow, this);
-        this._sendEventsAfter = __bind(this._sendEventsAfter, this);
-        this._sendEventsBefore = __bind(this._sendEventsBefore, this);
-        this._documentClicked = __bind(this._documentClicked, this);
-        this._close = __bind(this._close, this);
-        this._open = __bind(this._open, this);
-        this._clicked = __bind(this._clicked, this);
-        this._navbarHeight = __bind(this._navbarHeight, this);
+        this.bodyOverflow = bind(this.bodyOverflow, this);
+        this._sendEventsAfter = bind(this._sendEventsAfter, this);
+        this._sendEventsBefore = bind(this._sendEventsBefore, this);
+        this._documentClicked = bind(this._documentClicked, this);
+        this._close = bind(this._close, this);
+        this._open = bind(this._open, this);
+        this._clicked = bind(this._clicked, this);
+        this._navbarHeight = bind(this._navbarHeight, this);
         target = this.element.attr('data-target') ? this.element.attr('data-target') : false;
         if (target) {
           this.target = $(target);
@@ -297,9 +297,10 @@
         return oc = new Offcanvas($(this));
       });
       $(window).on('resize', function() {
-        return $('.navbar-offcanvas.in').each(function() {
+        $('.navbar-offcanvas.in').each(function() {
           return $(this).height('').removeClass('in');
         });
+        return $('.offcanvas-toggle').removeClass('is-open');
       });
       return $('.offcanvas-toggle').each(function() {
         return $(this).on('click', function(e) {
