@@ -67,7 +67,7 @@ You can change the position of the off-canvas nav by adding the following class
 navbar-offcanvas-right
 ```
 
-Dropdown menus are support, again using the Bootstrap standard markup.
+Dropdown menus are supported, again using the Bootstrap standard markup.
 
 The only difference is that it doesn't need the data-toggle. But this could be left in if you require it to be present.
 
