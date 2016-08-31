@@ -10,6 +10,7 @@
     position: fixed;
     width: 100%;
     max-width: 250px;
+    height: 100%;
     left: -250px;
     top: 0;
     padding-left: 15px;
