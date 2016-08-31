@@ -1,7 +1,5 @@
 # Bootstrap Offcanvas [![Build Status](https://travis-ci.org/iamphill/Bootstrap-Offcanvas.svg?branch=master)](https://travis-ci.org/iamphill/Bootstrap-Offcanvas)
 
-[![Join the chat at https://gitter.im/iamphill/Bootstrap-Offcanvas](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iamphill/Bootstrap-Offcanvas?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 Super simple, easy to use off-canvas navigation menu for Bootstrap.
 
 It uses Bootstrap classes and markup to create an off-canvas menu that not only looks good. But works perfectly. Example can be found [here](http://iamphill.github.io/Bootstrap-Offcanvas/example.html).
