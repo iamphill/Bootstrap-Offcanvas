@@ -96,6 +96,7 @@
         _touchEnd: (e) =>
             return true if $(e.target).parents('.navbar-offcanvas').length > 0
 
+            sendEvents = false
             x = e.originalEvent.changedTouches[0].pageX
             end = if @element.hasClass 'navbar-offcanvas-right' then Math.abs(x) > (@endThreshold + 50) else x < (@endThreshold + 50)
 
@@ -106,6 +107,7 @@
                 @element.removeClass 'in'
                     .css @_clearCss()
                 @button.removeClass 'is-open'
+                sendEvents = true
             else if Math.abs(x - @startX) > @endThreshold and @startX > @startThreshold and @startX < @maxStartThreshold
                 @currentX = if @element.hasClass 'navbar-offcanvas-right' then -@element.outerWidth() else @element.outerWidth()
 
@@ -113,11 +115,12 @@
                 @element.toggleClass 'in'
                     .css @_clearCss()
                 @button.toggleClass 'is-open'
+                sendEvents = true
             else
                 @element.css @_clearCss()
 
             # Overflow on body element
-            @offcanvas.bodyOverflow()
+            @offcanvas.bodyOverflow(sendEvents)
 
         #   Private: Get CSS
         #
@@ -299,9 +302,9 @@
         _sendEventsBefore: =>
             # Send events
             if @target.hasClass 'in'
-                @target.trigger 'show.bs.offcanvas'
-            else
                 @target.trigger 'hide.bs.offcanvas'
+            else
+                @target.trigger 'show.bs.offcanvas'
 
         #   Private: Send after events
         _sendEventsAfter: =>
@@ -312,13 +315,14 @@
                 @target.trigger 'hidden.bs.offcanvas'
 
         #   Public: Overflow on body
-        bodyOverflow: =>
+        bodyOverflow: (events = true) =>
             if @target.is '.in'
                 $('body').addClass 'offcanvas-stop-scrolling'
             else
                 $('body').removeClass 'offcanvas-stop-scrolling'
 
-            @_sendEventsAfter()
+            if events
+                @_sendEventsAfter()
 
 
     #   Transform checker
