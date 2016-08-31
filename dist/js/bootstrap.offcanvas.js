@@ -11,12 +11,20 @@
         this.nav = this.element.closest(".nav");
         this.dropdown = this.element.parent().find(".dropdown-menu");
         this.element.on('click', this._clickEvent);
+        this.nav.closest('.navbar-offcanvas').on('click', (function(_this) {
+          return function() {
+            if (_this.dropdown.is('.shown')) {
+              return _this.dropdown.removeClass('shown').closest('.active').removeClass('active');
+            }
+          };
+        })(this));
       }
 
       OffcanvasDropdown.prototype._clickEvent = function(e) {
         if (!this.dropdown.hasClass('shown')) {
           e.preventDefault();
         }
+        e.stopPropagation();
         $('.dropdown-toggle').not(this.element).closest('.active').removeClass('active').find('.dropdown-menu').removeClass('shown');
         this.dropdown.toggleClass("shown");
         return this.element.parent().toggleClass('active');
@@ -84,6 +92,9 @@
         }
         sendEvents = false;
         x = e.originalEvent.changedTouches[0].pageX;
+        if (Math.abs(x) === this.startX) {
+          return;
+        }
         end = this.element.hasClass('navbar-offcanvas-right') ? Math.abs(x) > (this.endThreshold + 50) : x < (this.endThreshold + 50);
         if (this.element.hasClass('in') && end) {
           this.currentX = 0;
