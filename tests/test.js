@@ -32,6 +32,19 @@
         $("#js-dropdown-test").trigger("click");
     });
 
+    test("Hides dropdown when blank space clicked", function (assert) {
+      assert.expect(4);
+      $("#js-dropdown-test").trigger("click");
+
+      assert.ok($("#js-dropdown-test").parent().hasClass("active"), "Dropdown menu should be visible");
+      assert.ok($("#js-dropdown-test").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should be hidden");
+
+      $('.navbar-offcanvas').trigger('click');
+
+      assert.ok(!$("#js-dropdown-test").parent().hasClass("active"), "Dropdown menu should not be visible");
+      assert.ok(!$("#js-dropdown-test").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should not be hidden");
+    });
+
     test("Dropdown show only one", function (assert) {
         assert.expect(6);
         $("#js-dropdown-test").trigger("click");

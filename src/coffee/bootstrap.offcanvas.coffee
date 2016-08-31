@@ -13,9 +13,14 @@
             # Click event
             @element.on 'click', @_clickEvent
 
+            @nav.closest('.navbar-offcanvas').on 'click', =>
+                if @dropdown.is('.shown')
+                    @dropdown.removeClass('shown').closest('.active').removeClass('active')
+
         #   Private: Click event on link
         _clickEvent: (e) =>
             e.preventDefault() if !@dropdown.hasClass 'shown'
+            e.stopPropagation()
 
             # Hide currently visible dropdown menus
             $('.dropdown-toggle').not(@element)
@@ -98,6 +103,8 @@
 
             sendEvents = false
             x = e.originalEvent.changedTouches[0].pageX
+            return if Math.abs(x) is @startX
+
             end = if @element.hasClass 'navbar-offcanvas-right' then Math.abs(x) > (@endThreshold + 50) else x < (@endThreshold + 50)
 
             if @element.hasClass('in') and end
