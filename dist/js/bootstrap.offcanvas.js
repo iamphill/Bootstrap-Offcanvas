@@ -78,24 +78,27 @@
       };
 
       OffcanvasTouch.prototype._touchEnd = function(e) {
-        var end, x;
+        var end, sendEvents, x;
         if ($(e.target).parents('.navbar-offcanvas').length > 0) {
           return true;
         }
+        sendEvents = false;
         x = e.originalEvent.changedTouches[0].pageX;
         end = this.element.hasClass('navbar-offcanvas-right') ? Math.abs(x) > (this.endThreshold + 50) : x < (this.endThreshold + 50);
         if (this.element.hasClass('in') && end) {
           this.currentX = 0;
           this.element.removeClass('in').css(this._clearCss());
           this.button.removeClass('is-open');
+          sendEvents = true;
         } else if (Math.abs(x - this.startX) > this.endThreshold && this.startX > this.startThreshold && this.startX < this.maxStartThreshold) {
           this.currentX = this.element.hasClass('navbar-offcanvas-right') ? -this.element.outerWidth() : this.element.outerWidth();
           this.element.toggleClass('in').css(this._clearCss());
           this.button.toggleClass('is-open');
+          sendEvents = true;
         } else {
           this.element.css(this._clearCss());
         }
-        return this.offcanvas.bodyOverflow();
+        return this.offcanvas.bodyOverflow(sendEvents);
       };
 
       OffcanvasTouch.prototype._getCss = function(x) {
@@ -253,9 +256,9 @@
 
       Offcanvas.prototype._sendEventsBefore = function() {
         if (this.target.hasClass('in')) {
-          return this.target.trigger('show.bs.offcanvas');
-        } else {
           return this.target.trigger('hide.bs.offcanvas');
+        } else {
+          return this.target.trigger('show.bs.offcanvas');
         }
       };
 
@@ -267,13 +270,18 @@
         }
       };
 
-      Offcanvas.prototype.bodyOverflow = function() {
+      Offcanvas.prototype.bodyOverflow = function(events) {
+        if (events == null) {
+          events = true;
+        }
         if (this.target.is('.in')) {
           $('body').addClass('offcanvas-stop-scrolling');
         } else {
           $('body').removeClass('offcanvas-stop-scrolling');
         }
-        return this._sendEventsAfter();
+        if (events) {
+          return this._sendEventsAfter();
+        }
       };
 
       return Offcanvas;
