@@ -229,6 +229,17 @@
 
                     @target.on 'offcanvas.open', (e) =>
                         @_open e
+
+                self = this
+                @element.on 'click', (e) ->
+                  if !self.element.hasClass 'js-offcanvas-has-events'
+                      if self.target
+                          self.target.height ''
+                          # Toggle class
+                          self.target.removeClass 'in'
+                          $('body').css
+                              overflow: ''
+                              position: ''
             else
                 # Just log a warning
                 console.warn 'Offcanvas: `data-target` attribute must be present.'
@@ -335,40 +346,23 @@
         #
         #   Checks if transform3d is available for us to use
         _transformCheck: =>
-            el = document.createElement 'div'
-            translate3D = "translate3d(0px, 0px, 0px)"
-            regex = /translate3d\(0px, 0px, 0px\)/g
-            el.style.cssText = "-webkit-transform: #{translate3D}; -moz-transform: #{translate3D}; -o-transform: #{translate3D}; transform: #{translate3D}"
-            asSupport = el.style.cssText.match regex
-            return asSupport.length?
+          el = document.createElement 'div'
+          translate3D = "translate3d(0px, 0px, 0px)"
+          regex = /translate3d\(0px, 0px, 0px\)/g
+          el.style.cssText = "-webkit-transform: #{translate3D}; -moz-transform: #{translate3D}; -o-transform: #{translate3D}; transform: #{translate3D}"
+          asSupport = el.style.cssText.match regex
+          return asSupport.length?
 
     $.fn.bootstrapOffcanvas = ->
-        elements = this
-        elements.each ->
-            new Offcanvas($(this))
+      elements = this
+      elements.each -> new Offcanvas($(this))
 
     $(window).on 'resize', ->
-        $('.navbar-offcanvas.in').each ->
+      $('.navbar-offcanvas.in').each ->
         $(@).height('').removeClass 'in'
-        $('.offcanvas-toggle').removeClass 'is-open'
+      $('.offcanvas-toggle').removeClass 'is-open'
 
     $ ->
-        $('[data-toggle="offcanvas"]').bootstrapOffcanvas()
-
-        $('.offcanvas-toggle').each ->
-            $(this).on 'click', (e) ->
-                if !$(this).hasClass 'js-offcanvas-has-events'
-                    selector = $(this).attr 'data-target'
-
-                    # Get el
-                    el = $(selector)
-
-                    if el
-                        el.height ''
-                        # Toggle class
-                        el.removeClass 'in'
-                        $('body').css
-                            overflow: ''
-                            position: ''
+      $('[data-toggle="offcanvas"]').bootstrapOffcanvas()
 
 ) window.jQuery, window

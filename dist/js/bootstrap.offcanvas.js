@@ -155,7 +155,7 @@
     })();
     window.Offcanvas = Offcanvas = (function() {
       function Offcanvas(element) {
-        var t, target;
+        var self, t, target;
         this.element = element;
         this._transformCheck = __bind(this._transformCheck, this);
         this.bodyOverflow = __bind(this.bodyOverflow, this);
@@ -206,6 +206,19 @@
               };
             })(this));
           }
+          self = this;
+          this.element.on('click', function(e) {
+            if (!self.element.hasClass('js-offcanvas-has-events')) {
+              if (self.target) {
+                self.target.height('');
+                self.target.removeClass('in');
+                return $('body').css({
+                  overflow: '',
+                  position: ''
+                });
+              }
+            }
+          });
         } else {
           console.warn('Offcanvas: `data-target` attribute must be present.');
         }
@@ -317,29 +330,13 @@
       });
     };
     $(window).on('resize', function() {
-      $('.navbar-offcanvas.in').each(function() {});
-      $(this).height('').removeClass('in');
+      $('.navbar-offcanvas.in').each(function() {
+        return $(this).height('').removeClass('in');
+      });
       return $('.offcanvas-toggle').removeClass('is-open');
     });
     return $(function() {
-      $('[data-toggle="offcanvas"]').bootstrapOffcanvas();
-      return $('.offcanvas-toggle').each(function() {
-        return $(this).on('click', function(e) {
-          var el, selector;
-          if (!$(this).hasClass('js-offcanvas-has-events')) {
-            selector = $(this).attr('data-target');
-            el = $(selector);
-            if (el) {
-              el.height('');
-              el.removeClass('in');
-              return $('body').css({
-                overflow: '',
-                position: ''
-              });
-            }
-          }
-        });
-      });
+      return $('[data-toggle="offcanvas"]').bootstrapOffcanvas();
     });
   })(window.jQuery, window);
 
