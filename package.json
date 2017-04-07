@@ -21,5 +21,8 @@
   },
   "scripts": {
     "test": "grunt tests"
+  },
+  "dependencies": {
+    "turbolinks": "^5.0.0"
   }
 }
