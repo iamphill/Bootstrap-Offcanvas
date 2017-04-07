@@ -309,17 +309,20 @@
       return Offcanvas;
 
     })();
+    $.fn.bootstrapOffcanvas = function() {
+      var elements;
+      elements = this;
+      return elements.each(function() {
+        return new Offcanvas($(this));
+      });
+    };
+    $(window).on('resize', function() {
+      $('.navbar-offcanvas.in').each(function() {});
+      $(this).height('').removeClass('in');
+      return $('.offcanvas-toggle').removeClass('is-open');
+    });
     return $(function() {
-      $('[data-toggle="offcanvas"]').each(function() {
-        var oc;
-        return oc = new Offcanvas($(this));
-      });
-      $(window).on('resize', function() {
-        $('.navbar-offcanvas.in').each(function() {
-          return $(this).height('').removeClass('in');
-        });
-        return $('.offcanvas-toggle').removeClass('is-open');
-      });
+      $('[data-toggle="offcanvas"]').bootstrapOffcanvas();
       return $('.offcanvas-toggle').each(function() {
         return $(this).on('click', function(e) {
           var el, selector;

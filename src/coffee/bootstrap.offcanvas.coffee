@@ -342,14 +342,18 @@
             asSupport = el.style.cssText.match regex
             return asSupport.length?
 
-    $ ->
-        $('[data-toggle="offcanvas"]').each ->
-            oc = new Offcanvas $(this)
+    $.fn.bootstrapOffcanvas = ->
+        elements = this
+        elements.each ->
+            new Offcanvas($(this))
 
-        $(window).on 'resize', ->
-          $('.navbar-offcanvas.in').each ->
-            $(@).height('').removeClass 'in'
-          $('.offcanvas-toggle').removeClass 'is-open'
+    $(window).on 'resize', ->
+        $('.navbar-offcanvas.in').each ->
+        $(@).height('').removeClass 'in'
+        $('.offcanvas-toggle').removeClass 'is-open'
+
+    $ ->
+        $('[data-toggle="offcanvas"]').bootstrapOffcanvas()
 
         $('.offcanvas-toggle').each ->
             $(this).on 'click', (e) ->
