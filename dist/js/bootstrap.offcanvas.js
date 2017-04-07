@@ -1,12 +1,12 @@
 (function() {
-  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   (function($, window) {
-    var Offcanvas, OffcanvasDropdown, OffcanvasTouch, transformCheck;
+    var Offcanvas, OffcanvasDropdown, OffcanvasTouch;
     OffcanvasDropdown = (function() {
       function OffcanvasDropdown(element) {
         this.element = element;
-        this._clickEvent = bind(this._clickEvent, this);
+        this._clickEvent = __bind(this._clickEvent, this);
         this.element = $(this.element);
         this.nav = this.element.closest(".nav");
         this.dropdown = this.element.parent().find(".dropdown-menu");
@@ -39,11 +39,11 @@
         this.element = element;
         this.location = location;
         this.offcanvas = offcanvas;
-        this._getFade = bind(this._getFade, this);
-        this._getCss = bind(this._getCss, this);
-        this._touchEnd = bind(this._touchEnd, this);
-        this._touchMove = bind(this._touchMove, this);
-        this._touchStart = bind(this._touchStart, this);
+        this._getFade = __bind(this._getFade, this);
+        this._getCss = __bind(this._getCss, this);
+        this._touchEnd = __bind(this._touchEnd, this);
+        this._touchMove = __bind(this._touchMove, this);
+        this._touchStart = __bind(this._touchStart, this);
         this.endThreshold = 130;
         this.startThreshold = this.element.hasClass('navbar-offcanvas-right') ? $("body").outerWidth() - 60 : 20;
         this.maxStartThreshold = this.element.hasClass('navbar-offcanvas-right') ? $("body").outerWidth() - 20 : 60;
@@ -157,21 +157,22 @@
       function Offcanvas(element) {
         var t, target;
         this.element = element;
-        this.bodyOverflow = bind(this.bodyOverflow, this);
-        this._sendEventsAfter = bind(this._sendEventsAfter, this);
-        this._sendEventsBefore = bind(this._sendEventsBefore, this);
-        this._documentClicked = bind(this._documentClicked, this);
-        this._close = bind(this._close, this);
-        this._open = bind(this._open, this);
-        this._clicked = bind(this._clicked, this);
-        this._navbarHeight = bind(this._navbarHeight, this);
+        this._transformCheck = __bind(this._transformCheck, this);
+        this.bodyOverflow = __bind(this.bodyOverflow, this);
+        this._sendEventsAfter = __bind(this._sendEventsAfter, this);
+        this._sendEventsBefore = __bind(this._sendEventsBefore, this);
+        this._documentClicked = __bind(this._documentClicked, this);
+        this._close = __bind(this._close, this);
+        this._open = __bind(this._open, this);
+        this._clicked = __bind(this._clicked, this);
+        this._navbarHeight = __bind(this._navbarHeight, this);
         target = this.element.attr('data-target') ? this.element.attr('data-target') : false;
         if (target) {
           this.target = $(target);
           if (this.target.length && !this.target.hasClass('js-offcanvas-done')) {
             this.element.addClass('js-offcanvas-has-events');
             this.location = this.target.hasClass("navbar-offcanvas-right") ? "right" : "left";
-            this.target.addClass(transform ? "offcanvas-transform js-offcanvas-done" : "offcanvas-position js-offcanvas-done");
+            this.target.addClass(this._transformCheck() ? "offcanvas-transform js-offcanvas-done" : "offcanvas-position js-offcanvas-done");
             this.target.data('offcanvas', this);
             this.element.on("click", this._clicked);
             this.target.on('transitionend', (function(_this) {
@@ -295,22 +296,20 @@
         }
       };
 
-      return Offcanvas;
-
-    })();
-    transformCheck = (function(_this) {
-      return function() {
+      Offcanvas.prototype._transformCheck = function() {
         var asSupport, el, regex, translate3D;
         el = document.createElement('div');
         translate3D = "translate3d(0px, 0px, 0px)";
         regex = /translate3d\(0px, 0px, 0px\)/g;
         el.style.cssText = "-webkit-transform: " + translate3D + "; -moz-transform: " + translate3D + "; -o-transform: " + translate3D + "; transform: " + translate3D;
         asSupport = el.style.cssText.match(regex);
-        return _this.transform = asSupport.length != null;
+        return asSupport.length != null;
       };
-    })(this);
+
+      return Offcanvas;
+
+    })();
     return $(function() {
-      transformCheck();
       $('[data-toggle="offcanvas"]').each(function() {
         var oc;
         return oc = new Offcanvas($(this));
