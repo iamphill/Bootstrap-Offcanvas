@@ -353,6 +353,8 @@
             oc = new Offcanvas $(this)
 
         $(window).on 'resize', ->
+          if 'text' != $(document.activeElement).attr 'type'
+            return
           $('.navbar-offcanvas.in').each ->
             $(@).height('').removeClass 'in'
           $('.offcanvas-toggle').removeClass 'is-open'
