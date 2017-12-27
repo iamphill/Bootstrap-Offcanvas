@@ -27,7 +27,7 @@
         e.stopPropagation();
         $('.dropdown-toggle').not(this.element).closest('.active').removeClass('active').find('.dropdown-menu').removeClass('shown');
         this.dropdown.toggleClass("shown");
-        return this.element.parent().toggleClass('active');
+        return this.element.parent().toggleClass('open');
       };
 
       return OffcanvasDropdown;
