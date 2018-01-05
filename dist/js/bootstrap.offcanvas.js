@@ -14,7 +14,7 @@
         this.nav.closest('.navbar-offcanvas').on('click', (function(_this) {
           return function() {
             if (_this.dropdown.is('.shown')) {
-              return _this.dropdown.removeClass('shown').closest('.active').removeClass('active');
+              return _this.dropdown.removeClass('shown').closest('.open').removeClass('open');
             }
           };
         })(this));
@@ -25,7 +25,7 @@
           e.preventDefault();
         }
         e.stopPropagation();
-        $('.dropdown-toggle').not(this.element).closest('.active').removeClass('active').find('.dropdown-menu').removeClass('shown');
+        $('.dropdown-toggle').not(this.element).closest('.open').removeClass('open').find('.dropdown-menu').removeClass('shown');
         this.dropdown.toggleClass("shown");
         return this.element.parent().toggleClass('open');
       };

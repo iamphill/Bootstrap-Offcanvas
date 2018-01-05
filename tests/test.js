@@ -27,7 +27,7 @@
         assert.expect(2);
         $("#js-dropdown-test").trigger("click");
 
-        assert.ok($("#js-dropdown-test").parent().hasClass("active"), "Dropdown menu should be visible");
+        assert.ok($("#js-dropdown-test").parent().hasClass("open"), "Dropdown menu should be visible");
         assert.ok($("#js-dropdown-test").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should be hidden");
         $("#js-dropdown-test").trigger("click");
     });
@@ -36,12 +36,12 @@
       assert.expect(4);
       $("#js-dropdown-test").trigger("click");
 
-      assert.ok($("#js-dropdown-test").parent().hasClass("active"), "Dropdown menu should be visible");
+      assert.ok($("#js-dropdown-test").parent().hasClass("open"), "Dropdown menu should be visible");
       assert.ok($("#js-dropdown-test").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should be hidden");
 
       $('.navbar-offcanvas').trigger('click');
 
-      assert.ok(!$("#js-dropdown-test").parent().hasClass("active"), "Dropdown menu should not be visible");
+      assert.ok(!$("#js-dropdown-test").parent().hasClass("open"), "Dropdown menu should not be visible");
       assert.ok(!$("#js-dropdown-test").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should not be hidden");
     });
 
@@ -49,15 +49,15 @@
         assert.expect(6);
         $("#js-dropdown-test").trigger("click");
 
-        assert.ok($("#js-dropdown-test").parent().hasClass("active"), "Dropdown menu should be visible");
+        assert.ok($("#js-dropdown-test").parent().hasClass("open"), "Dropdown menu should be visible");
         assert.ok($("#js-dropdown-test").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should be hidden");
 
         $("#js-dropdown-test2").trigger("click");
 
-        assert.ok($("#js-dropdown-test2").parent().hasClass("active"), "Dropdown menu should be visible");
+        assert.ok($("#js-dropdown-test2").parent().hasClass("open"), "Dropdown menu should be visible");
         assert.ok($("#js-dropdown-test2").parent().find(".dropdown-menu").hasClass("shown"), "Dropdown menu should be hidden");
 
-        assert.ok($("#js-dropdown-test").parent().is(":not(.active)"));
+        assert.ok($("#js-dropdown-test").parent().is(":not(.open)"));
         assert.ok($("#js-dropdown-test").parent().find(".dropdown-menu").is(":not(.shown)"));
 
         $("#js-dropdown-test2").trigger("click");

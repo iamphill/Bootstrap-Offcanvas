@@ -15,7 +15,7 @@
 
             @nav.closest('.navbar-offcanvas').on 'click', =>
                 if @dropdown.is('.shown')
-                    @dropdown.removeClass('shown').closest('.active').removeClass('active')
+                    @dropdown.removeClass('shown').closest('.open').removeClass('open')
 
         #   Private: Click event on link
         _clickEvent: (e) =>
@@ -24,8 +24,8 @@
 
             # Hide currently visible dropdown menus
             $('.dropdown-toggle').not(@element)
-              .closest('.active')
-              .removeClass 'active'
+              .closest('.open')
+              .removeClass 'open'
               .find '.dropdown-menu'
               .removeClass 'shown'
 
