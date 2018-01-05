@@ -321,7 +321,8 @@
         $('.navbar-offcanvas.in').each(function() {
           return $(this).height('').removeClass('in');
         });
-        return $('.offcanvas-toggle').removeClass('is-open');
+        $('.offcanvas-toggle').removeClass('is-open');
+        return $('body').removeClass('offcanvas-stop-scrolling');
       });
       return $('.offcanvas-toggle').each(function() {
         return $(this).on('click', function(e) {
