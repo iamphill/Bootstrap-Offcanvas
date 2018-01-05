@@ -31,7 +31,7 @@
 
             # Show or hide element
             @dropdown.toggleClass "shown"
-            @element.parent().toggleClass 'active'
+            @element.parent().toggleClass 'open'
 
     class OffcanvasTouch
         #   Public: Constructor for offcanvas
