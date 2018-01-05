@@ -157,7 +157,6 @@
       function Offcanvas(element) {
         var t, target;
         this.element = element;
-        this._transformSupported = __bind(this._transformSupported, this);
         this.bodyOverflow = __bind(this.bodyOverflow, this);
         this._sendEventsAfter = __bind(this._sendEventsAfter, this);
         this._sendEventsBefore = __bind(this._sendEventsBefore, this);

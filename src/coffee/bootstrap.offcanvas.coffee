@@ -334,7 +334,7 @@
         #   Transform checker
         #
         #   Checks if transform3d is available for us to use
-        _transformSupported: =>
+        _transformSupported: ->
             el = document.createElement 'div'
             translate3D = "translate3d(0px, 0px, 0px)"
             regex = /translate3d\(0px, 0px, 0px\)/g
