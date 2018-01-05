@@ -98,4 +98,26 @@
 
         assert.ok(!$("#js-bootstrap-offcanvas").hasClass("in"), "Off-Canvas should not be visible");
     });
+
+    test("Adds offcanvas-stop-scrolling to body", function (assert) {
+      assert.expect(1);
+
+      $("#offcanvas-toggle").trigger("click");
+
+      assert.ok($("body").hasClass("offcanvas-stop-scrolling"));
+
+      $("#js-bootstrap-offcanvas").trigger("offcanvas.close");
+    });
+
+    test("Removes offcanvas-stop-scrolling from body after scrolling", function (assert) {
+      assert.expect(2);
+
+      $("#offcanvas-toggle").trigger("click");
+
+      assert.ok($("body").hasClass("offcanvas-stop-scrolling"));
+
+      $(window).trigger("resize");
+
+      assert.ok(!$("body").hasClass("offcanvas-stop-scrolling"));
+    });
 })(jQuery);
