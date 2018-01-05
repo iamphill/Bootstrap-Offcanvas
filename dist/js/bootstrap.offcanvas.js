@@ -2,7 +2,7 @@
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   (function($, window) {
-    var Offcanvas, OffcanvasDropdown, OffcanvasTouch, transformCheck;
+    var Offcanvas, OffcanvasDropdown, OffcanvasTouch;
     OffcanvasDropdown = (function() {
       function OffcanvasDropdown(element) {
         this.element = element;
@@ -14,7 +14,7 @@
         this.nav.closest('.navbar-offcanvas').on('click', (function(_this) {
           return function() {
             if (_this.dropdown.is('.shown')) {
-              return _this.dropdown.removeClass('shown').closest('.active').removeClass('active');
+              return _this.dropdown.removeClass('shown').closest('.open').removeClass('open');
             }
           };
         })(this));
@@ -25,7 +25,7 @@
           e.preventDefault();
         }
         e.stopPropagation();
-        $('.dropdown-toggle').not(this.element).closest('.active').removeClass('active').find('.dropdown-menu').removeClass('shown');
+        $('.dropdown-toggle').not(this.element).closest('.open').removeClass('open').find('.dropdown-menu').removeClass('shown');
         this.dropdown.toggleClass("shown");
         return this.element.parent().toggleClass('open');
       };
@@ -171,7 +171,7 @@
           if (this.target.length && !this.target.hasClass('js-offcanvas-done')) {
             this.element.addClass('js-offcanvas-has-events');
             this.location = this.target.hasClass("navbar-offcanvas-right") ? "right" : "left";
-            this.target.addClass(transform ? "offcanvas-transform js-offcanvas-done" : "offcanvas-position js-offcanvas-done");
+            this.target.addClass(this._transformSupported() ? "offcanvas-transform js-offcanvas-done" : "offcanvas-position js-offcanvas-done");
             this.target.data('offcanvas', this);
             this.element.on("click", this._clicked);
             this.target.on('transitionend', (function(_this) {
@@ -295,25 +295,27 @@
         }
       };
 
-      return Offcanvas;
-
-    })();
-    transformCheck = (function(_this) {
-      return function() {
+      Offcanvas.prototype._transformSupported = function() {
         var asSupport, el, regex, translate3D;
         el = document.createElement('div');
         translate3D = "translate3d(0px, 0px, 0px)";
         regex = /translate3d\(0px, 0px, 0px\)/g;
         el.style.cssText = "-webkit-transform: " + translate3D + "; -moz-transform: " + translate3D + "; -o-transform: " + translate3D + "; transform: " + translate3D;
         asSupport = el.style.cssText.match(regex);
-        return _this.transform = asSupport.length != null;
+        return asSupport.length != null;
       };
-    })(this);
+
+      return Offcanvas;
+
+    })();
+    $.fn.bsOffcanvas = function() {
+      return this.each(function() {
+        return new Offcanvas($(this));
+      });
+    };
     return $(function() {
-      transformCheck();
       $('[data-toggle="offcanvas"]').each(function() {
-        var oc;
-        return oc = new Offcanvas($(this));
+        return $(this).bsOffcanvas();
       });
       $(window).on('resize', function() {
         $('.navbar-offcanvas.in').each(function() {

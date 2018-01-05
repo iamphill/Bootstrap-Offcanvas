@@ -15,7 +15,7 @@
 
             @nav.closest('.navbar-offcanvas').on 'click', =>
                 if @dropdown.is('.shown')
-                    @dropdown.removeClass('shown').closest('.active').removeClass('active')
+                    @dropdown.removeClass('shown').closest('.open').removeClass('open')
 
         #   Private: Click event on link
         _clickEvent: (e) =>
@@ -24,8 +24,8 @@
 
             # Hide currently visible dropdown menus
             $('.dropdown-toggle').not(@element)
-              .closest('.active')
-              .removeClass 'active'
+              .closest('.open')
+              .removeClass 'open'
               .find '.dropdown-menu'
               .removeClass 'shown'
 
@@ -195,7 +195,7 @@
                     # Get the location of the offcanvas menu
                     @location = if @target.hasClass "navbar-offcanvas-right" then "right" else "left"
 
-                    @target.addClass if transform then "offcanvas-transform js-offcanvas-done" else "offcanvas-position js-offcanvas-done"
+                    @target.addClass if @_transformSupported() then "offcanvas-transform js-offcanvas-done" else "offcanvas-position js-offcanvas-done"
 
                     # Add some data
                     @target.data 'offcanvas', @
@@ -331,26 +331,25 @@
             if events
                 @_sendEventsAfter()
 
+        #   Transform checker
+        #
+        #   Checks if transform3d is available for us to use
+        _transformSupported: ->
+            el = document.createElement 'div'
+            translate3D = "translate3d(0px, 0px, 0px)"
+            regex = /translate3d\(0px, 0px, 0px\)/g
 
-    #   Transform checker
-    #
-    #   Checks if transform3d is available for us to use
-    transformCheck = =>
-        el = document.createElement 'div'
-        translate3D = "translate3d(0px, 0px, 0px)"
-        regex = /translate3d\(0px, 0px, 0px\)/g
+            el.style.cssText = "-webkit-transform: #{translate3D}; -moz-transform: #{translate3D}; -o-transform: #{translate3D}; transform: #{translate3D}"
+            asSupport = el.style.cssText.match regex
 
-        el.style.cssText = "-webkit-transform: #{translate3D}; -moz-transform: #{translate3D}; -o-transform: #{translate3D}; transform: #{translate3D}"
-        asSupport = el.style.cssText.match regex
+            asSupport.length?
 
-        @transform = asSupport.length?
+    $.fn.bsOffcanvas = ->
+        this.each -> new Offcanvas $(this)
 
     $ ->
-        # Work out if transform3d is available for use
-        transformCheck()
-
         $('[data-toggle="offcanvas"]').each ->
-            oc = new Offcanvas $(this)
+            $(this).bsOffcanvas()
 
         $(window).on 'resize', ->
           $('.navbar-offcanvas.in').each ->
