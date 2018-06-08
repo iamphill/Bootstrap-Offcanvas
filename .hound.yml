@@ -1,8 +1,0 @@
-scss:
-  config_file: .scss-lint.yml
-
-coffee_script:
-  config_file: .coffee.json
-
-javascript:
-  enabled: false

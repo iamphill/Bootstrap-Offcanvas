@@ -1,6 +1,6 @@
 {
   "name": "offcanvas-bootstrap",
-  "version": "2.5.2",
+  "version": "3.0.0",
   "author": {
     "name": "Phil Hughes",
     "url": "http://www.iamphill.com"
@@ -10,16 +10,15 @@
     "url": "git://github.com/iamphill/Bootstrap-Offcanvas.git"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-autoprefixer": "^2.2.0",
-    "grunt-bootlint": "^0.9.0",
-    "grunt-contrib-coffee": "^0.10.1",
-    "grunt-contrib-qunit": ">=0.2.1",
-    "grunt-contrib-uglify": "^0.5.1",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-sass": "1.0.0"
+    "babel-core": "^6.26.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "bootstrap": "^4.1.1",
+    "rollup": "^0.60.1",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-typescript": "^0.8.1"
   },
   "scripts": {
-    "test": "grunt tests"
+    "dev": "rollup -c"
   }
 }

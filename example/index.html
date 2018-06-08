@@ -1,78 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../dist/css/bootstrap.offcanvas.min.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body class="body-offcanvas">
-
-    <header class="clearfix">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Brand</a>
-                    <button type="button" class="navbar-toggle offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas" style="float:left;">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                        </span>
-                    </button>
-                </div>
-                <div class="navbar-offcanvas navbar-offcanvas-touch" id="js-bootstrap-offcanvas">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle">Another Link <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Another Link</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>Page Title</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat hendrerit feugiat. In cursus nisl id arcu ullamcorper, eget euismod ante tincidunt. Cras placerat facilisis semper. Nam vel nisl sit amet justo interdum luctus. Mauris eu felis pretium velit mollis molestie. Nam aliquet a tellus ut pretium. Pellentesque fermentum nulla tempus mauris sagittis, eget imperdiet quam tristique. Pellentesque quis mauris mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales turpis fringilla ligula rutrum, eget mattis justo bibendum. Integer imperdiet mi non cursus bibendum. Nullam vitae cursus justo. Integer quis elit sit amet arcu pellentesque <a href="http://www.google.com">google</a> sit amet a sapien. Aliquam tincidunt felis eget quam euismod cursus. Suspendisse lobortis ut elit vitae rhoncus. Ut tincidunt, ante eu egestas sodales, dui nulla aliquet mi, a eleifend lacus risus sit amet lacus.</p>
-            </div>
-            <div class="col-sm-12">
-                <h1>Page Title</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat hendrerit feugiat. In cursus nisl id arcu ullamcorper, eget euismod ante tincidunt. Cras placerat facilisis semper. Nam vel nisl sit amet justo interdum luctus. Mauris eu felis pretium velit mollis molestie. Nam aliquet a tellus ut pretium. Pellentesque fermentum nulla tempus mauris sagittis, eget imperdiet quam tristique. Pellentesque quis mauris mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales turpis fringilla ligula rutrum, eget mattis justo bibendum. Integer imperdiet mi non cursus bibendum. Nullam vitae cursus justo. Integer quis elit sit amet arcu pellentesque <a href="http://www.google.com">google</a> sit amet a sapien. Aliquam tincidunt felis eget quam euismod cursus. Suspendisse lobortis ut elit vitae rhoncus. Ut tincidunt, ante eu egestas sodales, dui nulla aliquet mi, a eleifend lacus risus sit amet lacus.</p>
-            </div>
-            <div class="col-sm-12">
-                <h1>Page Title</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat hendrerit feugiat. In cursus nisl id arcu ullamcorper, eget euismod ante tincidunt. Cras placerat facilisis semper. Nam vel nisl sit amet justo interdum luctus. Mauris eu felis pretium velit mollis molestie. Nam aliquet a tellus ut pretium. Pellentesque fermentum nulla tempus mauris sagittis, eget imperdiet quam tristique. Pellentesque quis mauris mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales turpis fringilla ligula rutrum, eget mattis justo bibendum. Integer imperdiet mi non cursus bibendum. Nullam vitae cursus justo. Integer quis elit sit amet arcu pellentesque <a href="http://www.google.com">google</a> sit amet a sapien. Aliquam tincidunt felis eget quam euismod cursus. Suspendisse lobortis ut elit vitae rhoncus. Ut tincidunt, ante eu egestas sodales, dui nulla aliquet mi, a eleifend lacus risus sit amet lacus.</p>
-            </div>
-        </div>
-    </div>
-
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
     <script src="../dist/js/bootstrap.offcanvas.js"></script>
-</body>
+    <style>
+    .navbar-offcanvas {
+      display: none;
+    }
+
+    @media (max-width: 991px) {
+      .navbar-offcanvas.show {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+      }
+    }
+
+    @media (min-width: 992px) {
+      .navbar-offcanvas {
+        display: flex;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="offcanvas" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-offcanvas bg-light" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </body>
 </html>
