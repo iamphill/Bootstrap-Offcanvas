@@ -1,11 +1,15 @@
 language: node_js
-sudo: required
-addons:
-  chrome: stable
-node_js:
-  - "9.0"
-install:
-  - npm install
-script:
-  - npm run eslint
-  - npm run test -- --detectOpenHandles
+matrix:
+  include:
+    - node_js: '9'
+      script:
+        - npm run lint
+    - node_js: '9'
+      sudo: required
+      addons:
+        chrome: stable
+      before_script:
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
+      script:
+        - npm run test

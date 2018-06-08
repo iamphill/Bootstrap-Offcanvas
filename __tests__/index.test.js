@@ -80,19 +80,7 @@ describe('screenshots are correct', () => {
     if (!fs.existsSync('./tmp/screenshots')) fs.mkdirSync('./tmp/screenshots');
   });
 
-  afterEach(async () => {
-    {
-      const { stdout } = await exec('ls -la tmp');
-      console.log('stdout:', stdout);
-    }
-
-    {
-      const { stdout } = await exec('ls -la tmp/screenshots');
-      console.log('stdout:', stdout);
-    }
-  });
-
-  afterAll(async () => {
+  afterAll(async done => {
     polyserve.close(done);
   });
 
@@ -104,6 +92,8 @@ describe('screenshots are correct', () => {
       height: 667,
     });
   });
+
+  afterEach(() => browser.close());
 
   it('opens offcanvas menu', async () => {
     await takeAndCompareScreenshot(page, 'example', 'open');
