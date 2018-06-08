@@ -82,12 +82,12 @@ describe('screenshots are correct', () => {
 
   afterEach(async () => {
     {
-      const { stderr } = await exec('ls -la tmp');
+      const { stdout } = await exec('ls -la tmp');
       console.log('stdout:', stdout);
     }
 
     {
-      const { stderr } = await exec('ls -la tmp/screenshots');
+      const { stdout } = await exec('ls -la tmp/screenshots');
       console.log('stdout:', stdout);
     }
   });
