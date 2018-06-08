@@ -46,6 +46,10 @@ describe('screenshots are correct', () => {
       'open'
     );
   });
+
+  it('hides offcanvas menu', async () => {
+    await takeAndCompareScreenshot(() => {}, page, 'example', 'hide');
+  });
 });
 
 async function takeAndCompareScreenshot(action, page, route, filePrefix) {
@@ -95,7 +99,7 @@ function compareScreenshots(view) {
         diff.data,
         width,
         height,
-        { threshold: 0.2 }
+        { threshold: 1 }
       );
       const percentDiff = (numDiffPixels / (width * height)) * 100;
 

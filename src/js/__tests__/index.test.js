@@ -74,8 +74,9 @@ describe('init', () => {
 
     init(el);
 
-    expect(el.addEventListener.mock.calls.length).toBe(1);
+    expect(el.addEventListener.mock.calls.length).toBe(2);
     expect(el.addEventListener.mock.calls[0][0]).toBe('click');
+    expect(el.addEventListener.mock.calls[1][0]).toBe('offcanvas.toggle');
 
     controls.remove();
   });

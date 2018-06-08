@@ -35,6 +35,8 @@ export const init = el => {
   }
 
   el.addEventListener('click', () => toggleOffcanvas(controls));
+
+  el.addEventListener('offcanvas.toggle', () => toggleOffcanvas(controls));
 };
 
 export default init;

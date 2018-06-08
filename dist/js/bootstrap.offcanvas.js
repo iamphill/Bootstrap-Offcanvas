@@ -45,6 +45,10 @@
     el.addEventListener('click', function () {
       return toggleOffcanvas(controls);
     });
+
+    el.addEventListener('offcanvas.toggle', function () {
+      return toggleOffcanvas(controls);
+    });
   };
 
   exports.CLASS_NAMES = CLASS_NAMES;
