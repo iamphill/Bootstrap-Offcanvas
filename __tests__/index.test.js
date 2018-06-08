@@ -72,14 +72,6 @@ function compareScreenshots(view) {
       .pipe(new PNG())
       .on('parsed', doneReading);
 
-    fs.createReadStream(`${currentDir}/${view}.png`, { encoding: 'base64' })
-      .on('data', function(data) {
-        console.log('got data', data);
-      })
-      .on('end', function() {
-        console.log('\n\n');
-      });
-
     let filesRead = 0;
     function doneReading() {
       // Wait until both files are read.
