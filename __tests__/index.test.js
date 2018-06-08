@@ -3,7 +3,9 @@ import puppeteer from 'puppeteer';
 import { startServer } from 'polyserve';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
+import util from 'util';
 
+const exec = util.promisify(require('child_process').exec);
 const port = 8080;
 const testDir = './tmp/screenshots';
 const goldenDir = './__tests__/screenshots';
@@ -78,7 +80,21 @@ describe('screenshots are correct', () => {
     if (!fs.existsSync('./tmp/screenshots')) fs.mkdirSync('./tmp/screenshots');
   });
 
-  afterAll(done => polyserve.close(done));
+  afterEach(async () => {
+    {
+      const { stderr } = await exec('ls -la tmp');
+      console.log('stdout:', stdout);
+    }
+
+    {
+      const { stderr } = await exec('ls -la tmp/screenshots');
+      console.log('stdout:', stdout);
+    }
+  });
+
+  afterAll(async () => {
+    polyserve.close(done);
+  });
 
   beforeEach(async function() {
     browser = await puppeteer.launch();
