@@ -5,7 +5,8 @@ export default {
   output: {
     file: './dist/js/bootstrap.offcanvas.js',
     format: 'umd',
-    name: 'Bootstrap.Offcanvas',
+    name: 'BS.Offcanvas',
+    exports: 'named',
   },
   plugins: [
     babel({

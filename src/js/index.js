@@ -27,18 +27,14 @@ export const toggleOffcanvas = el => {
   }
 };
 
-export const initOffcanvas = (el, controls, callback) => {
+export const init = el => {
+  const controls = document.getElementById(el.getAttribute('aria-controls'));
+
   if (!controls) {
     throw new Error('Offcanvas toggle must be linked with aria-controls');
   }
 
-  el.addEventListener('click', () => callback(controls));
+  el.addEventListener('click', () => toggleOffcanvas(controls));
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  [...document.querySelectorAll('[data-toggle="offcanvas"]')].forEach(el => {
-    const controls = document.getElementById(el.getAttribute('aria-controls'));
-
-    initOffcanvas(el, controls, toggleOffcanvas);
-  });
-});
+export default init;

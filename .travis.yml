@@ -9,3 +9,5 @@ install:
 script:
   - npm run eslint
   - npm run test
+  - ls -la tmp
+  - ls -la tmp/screenshots

@@ -1,18 +1,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.Bootstrap = global.Bootstrap || {}, global.Bootstrap.Offcanvas = {})));
+  (factory((global.BS = global.BS || {}, global.BS.Offcanvas = {})));
 }(this, (function (exports) { 'use strict';
-
-  var toConsumableArray = function (arr) {
-    if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-      return arr2;
-    } else {
-      return Array.from(arr);
-    }
-  };
 
   var CLASS_NAMES = {
     show: 'show'
@@ -36,7 +26,7 @@
   };
 
   var toggleOffcanvas = function toggleOffcanvas(el) {
-    if (!matchMedia('(min-width: 992px)').matches) {
+    if (!window.matchMedia('(min-width: 992px)').matches) {
       triggerEvent(el, isShown(el) ? EVENT_NAMES.hide : EVENT_NAMES.show);
 
       el.classList.toggle(CLASS_NAMES.show);
@@ -45,24 +35,25 @@
     }
   };
 
-  var addEventListener = function addEventListener(el) {
+  var init = function init(el) {
     var controls = document.getElementById(el.getAttribute('aria-controls'));
+
+    if (!controls) {
+      throw new Error('Offcanvas toggle must be linked with aria-controls');
+    }
 
     el.addEventListener('click', function () {
       return toggleOffcanvas(controls);
     });
   };
 
-  document.addEventListener('DOMContentLoaded', function () {
-    [].concat(toConsumableArray(document.querySelectorAll('[data-toggle="offcanvas"]'))).forEach(function (el) {
-      return addEventListener(el);
-    });
-  });
-
+  exports.CLASS_NAMES = CLASS_NAMES;
+  exports.EVENT_NAMES = EVENT_NAMES;
   exports.isShown = isShown;
   exports.triggerEvent = triggerEvent;
   exports.toggleOffcanvas = toggleOffcanvas;
-  exports.addEventListener = addEventListener;
+  exports.init = init;
+  exports.default = init;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
