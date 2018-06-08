@@ -3,7 +3,7 @@ sudo: false
 node_js:
   - "9.0"
 install:
-  - bower install
+  - npm install
 script:
   - npm run eslint
   - npm run test
