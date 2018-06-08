@@ -8,4 +8,4 @@ install:
   - npm install
 script:
   - npm run eslint
-  - npm run test -- -detectOpenHandles
+  - npm run test -- --detectOpenHandles
