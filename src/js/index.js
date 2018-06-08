@@ -1,15 +1,15 @@
-const CLASS_NAMES = {
+export const CLASS_NAMES = {
   show: 'show',
 };
 
-const EVENT_NAMES = {
+export const EVENT_NAMES = {
   show: 'show.bs.offcanvas',
   shown: 'shown.bs.offcanvas',
   hide: 'hide.bs.offcanvas',
   hidden: 'hidden.bs.offcanvas',
 };
 
-export const isShown = (el) => el.classList.contains(CLASS_NAMES.show);
+export const isShown = el => el.classList.contains(CLASS_NAMES.show);
 
 export const triggerEvent = (el, eventName) => {
   const event = new CustomEvent(eventName);
@@ -17,8 +17,8 @@ export const triggerEvent = (el, eventName) => {
   el.dispatchEvent(event);
 };
 
-export const toggleOffcanvas = (el) => {
-  if (!matchMedia('(min-width: 992px)').matches) {
+export const toggleOffcanvas = el => {
+  if (!window.matchMedia('(min-width: 992px)').matches) {
     triggerEvent(el, isShown(el) ? EVENT_NAMES.hide : EVENT_NAMES.show);
 
     el.classList.toggle(CLASS_NAMES.show);
@@ -27,12 +27,18 @@ export const toggleOffcanvas = (el) => {
   }
 };
 
-export const addEventListener = (el) => {
-  const controls = document.getElementById(el.getAttribute('aria-controls'));
+export const initOffcanvas = (el, controls, callback) => {
+  if (!controls) {
+    throw new Error('Offcanvas toggle must be linked with aria-controls');
+  }
 
-  el.addEventListener('click', () => toggleOffcanvas(controls));
+  el.addEventListener('click', () => callback(controls));
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  [...document.querySelectorAll('[data-toggle="offcanvas"]')].forEach((el) => addEventListener(el));
+  [...document.querySelectorAll('[data-toggle="offcanvas"]')].forEach(el => {
+    const controls = document.getElementById(el.getAttribute('aria-controls'));
+
+    initOffcanvas(el, controls, toggleOffcanvas);
+  });
 });

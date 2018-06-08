@@ -11,14 +11,23 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "bootstrap": "^4.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "jest": "^23.1.0",
+    "prettier": "^1.13.4",
+    "regenerator-runtime": "^0.11.1",
     "rollup": "^0.60.1",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-typescript": "^0.8.1"
   },
   "scripts": {
-    "dev": "rollup -c"
+    "dev": "rollup -c",
+    "test": "jest",
+    "eslint": "eslint --max-warnings 0 --ext .js ."
   }
 }
