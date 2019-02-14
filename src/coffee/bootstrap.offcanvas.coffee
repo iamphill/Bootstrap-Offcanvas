@@ -189,7 +189,7 @@
 
                 # Target must be available before running
                 if @target.length
-                  
+
                     # Add offcanvas behaviours once, but handle element events apart, so multiple elements can have a
                     # same canvas target
                     if !@target.hasClass 'js-offcanvas-done'
@@ -229,11 +229,11 @@
                         @target.on 'offcanvas.open', (e) =>
                             @_open e
 
-                # Add class to element to say it already has events
-                @element.addClass 'js-offcanvas-has-events'
+                    # Add class to element to say it already has events
+                    @element.addClass 'js-offcanvas-has-events'
 
-                # Click event on element
-                @element.on "click", @_clicked
+                    # Click event on element
+                    @element.on "click", @_clicked
             else
                 # Just log a warning
                 console.warn 'Offcanvas: `data-target` attribute must be present.'

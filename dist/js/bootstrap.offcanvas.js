@@ -204,7 +204,6 @@
                 };
               })(this));
             }
-            
             this.element.addClass('js-offcanvas-has-events');
             this.element.on("click", this._clicked);
           }
