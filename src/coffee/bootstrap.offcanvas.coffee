@@ -188,47 +188,52 @@
                 @target = $(target)
 
                 # Target must be available before running
-                if @target.length and !@target.hasClass 'js-offcanvas-done'
+                if @target.length
+
+                    # Add offcanvas behaviours once, but handle element events apart, so multiple elements can have a
+                    # same canvas target
+                    if !@target.hasClass 'js-offcanvas-done'
+
+                        # Get the location of the offcanvas menu
+                        @location = if @target.hasClass "navbar-offcanvas-right" then "right" else "left"
+
+                        @target.addClass if @_transformSupported() then "offcanvas-transform js-offcanvas-done" else "offcanvas-position js-offcanvas-done"
+
+                        # Add some data
+                        @target.data 'offcanvas', @
+
+                        # Remove then height on transition end
+                        @target.on 'transitionend', =>
+                            if @target.is ':not(.in)'
+                                @target.height ''
+
+                        # Click event on document
+                        $(document).on "click", @_documentClicked
+
+                        # Should touch be added to this target
+                        if @target.hasClass 'navbar-offcanvas-touch'
+                            # Create touch class
+                            t = new OffcanvasTouch @element, @target, @location, @
+
+                        # Get all dropdown menu links and create a class for them
+                        @target.find(".dropdown-toggle").each ->
+                            d = new OffcanvasDropdown @
+
+                        # Listen for a triggered event
+                        @target.on 'offcanvas.toggle', (e) =>
+                            @_clicked e
+
+                        @target.on 'offcanvas.close', (e) =>
+                            @_close e
+
+                        @target.on 'offcanvas.open', (e) =>
+                            @_open e
+
                     # Add class to element to say it already has events
                     @element.addClass 'js-offcanvas-has-events'
 
-                    # Get the location of the offcanvas menu
-                    @location = if @target.hasClass "navbar-offcanvas-right" then "right" else "left"
-
-                    @target.addClass if @_transformSupported() then "offcanvas-transform js-offcanvas-done" else "offcanvas-position js-offcanvas-done"
-
-                    # Add some data
-                    @target.data 'offcanvas', @
-
                     # Click event on element
                     @element.on "click", @_clicked
-
-                    # Remove then height on transition end
-                    @target.on 'transitionend', =>
-                        if @target.is ':not(.in)'
-                            @target.height ''
-
-                    # Click event on document
-                    $(document).on "click", @_documentClicked
-
-                    # Should touch be added to this target
-                    if @target.hasClass 'navbar-offcanvas-touch'
-                        # Create touch class
-                        t = new OffcanvasTouch @element, @target, @location, @
-
-                    # Get all dropdown menu links and create a class for them
-                    @target.find(".dropdown-toggle").each ->
-                        d = new OffcanvasDropdown @
-
-                    # Listen for a triggered event
-                    @target.on 'offcanvas.toggle', (e) =>
-                        @_clicked e
-
-                    @target.on 'offcanvas.close', (e) =>
-                        @_close e
-
-                    @target.on 'offcanvas.open', (e) =>
-                        @_open e
             else
                 # Just log a warning
                 console.warn 'Offcanvas: `data-target` attribute must be present.'
