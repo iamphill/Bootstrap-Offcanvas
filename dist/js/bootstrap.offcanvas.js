@@ -168,42 +168,45 @@
         target = this.element.attr('data-target') ? this.element.attr('data-target') : false;
         if (target) {
           this.target = $(target);
-          if (this.target.length && !this.target.hasClass('js-offcanvas-done')) {
-            this.element.addClass('js-offcanvas-has-events');
-            this.location = this.target.hasClass("navbar-offcanvas-right") ? "right" : "left";
-            this.target.addClass(this._transformSupported() ? "offcanvas-transform js-offcanvas-done" : "offcanvas-position js-offcanvas-done");
-            this.target.data('offcanvas', this);
-            this.element.on("click", this._clicked);
-            this.target.on('transitionend', (function(_this) {
-              return function() {
-                if (_this.target.is(':not(.in)')) {
-                  return _this.target.height('');
-                }
-              };
-            })(this));
-            $(document).on("click", this._documentClicked);
-            if (this.target.hasClass('navbar-offcanvas-touch')) {
-              t = new OffcanvasTouch(this.element, this.target, this.location, this);
+          if (this.target.length) {
+            if (!this.target.hasClass('js-offcanvas-done')) {
+              this.location = this.target.hasClass("navbar-offcanvas-right") ? "right" : "left";
+              this.target.addClass(this._transformSupported() ? "offcanvas-transform js-offcanvas-done" : "offcanvas-position js-offcanvas-done");
+              this.target.data('offcanvas', this);
+              this.target.on('transitionend', (function(_this) {
+                return function() {
+                  if (_this.target.is(':not(.in)')) {
+                    return _this.target.height('');
+                  }
+                };
+              })(this));
+              $(document).on("click", this._documentClicked);
+              if (this.target.hasClass('navbar-offcanvas-touch')) {
+                t = new OffcanvasTouch(this.element, this.target, this.location, this);
+              }
+              this.target.find(".dropdown-toggle").each(function() {
+                var d;
+                return d = new OffcanvasDropdown(this);
+              });
+              this.target.on('offcanvas.toggle', (function(_this) {
+                return function(e) {
+                  return _this._clicked(e);
+                };
+              })(this));
+              this.target.on('offcanvas.close', (function(_this) {
+                return function(e) {
+                  return _this._close(e);
+                };
+              })(this));
+              this.target.on('offcanvas.open', (function(_this) {
+                return function(e) {
+                  return _this._open(e);
+                };
+              })(this));
             }
-            this.target.find(".dropdown-toggle").each(function() {
-              var d;
-              return d = new OffcanvasDropdown(this);
-            });
-            this.target.on('offcanvas.toggle', (function(_this) {
-              return function(e) {
-                return _this._clicked(e);
-              };
-            })(this));
-            this.target.on('offcanvas.close', (function(_this) {
-              return function(e) {
-                return _this._close(e);
-              };
-            })(this));
-            this.target.on('offcanvas.open', (function(_this) {
-              return function(e) {
-                return _this._open(e);
-              };
-            })(this));
+            
+            this.element.addClass('js-offcanvas-has-events');
+            this.element.on("click", this._clicked);
           }
         } else {
           console.warn('Offcanvas: `data-target` attribute must be present.');
