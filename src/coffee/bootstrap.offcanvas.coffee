@@ -348,14 +348,18 @@
         this.each -> new Offcanvas $(this)
 
     $ ->
+        windowWidth = $(window).width();
         $('[data-toggle="offcanvas"]').each ->
             $(this).bsOffcanvas()
 
         $(window).on 'resize', ->
-          $('.navbar-offcanvas.in').each ->
-            $(@).height('').removeClass 'in'
-          $('.offcanvas-toggle').removeClass 'is-open'
-          $('body').removeClass 'offcanvas-stop-scrolling'
+          if $(window).width() != windowWidth
+            $('.navbar-offcanvas.in').each ->
+                $(@).height('').removeClass 'in'
+            $('.offcanvas-toggle').removeClass 'is-open'
+            $('body').removeClass 'offcanvas-stop-scrolling' 
+            windowWidth = $(window).width();
+            true
 
         $('.offcanvas-toggle').each ->
             $(this).on 'click', (e) ->
