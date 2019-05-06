@@ -314,15 +314,21 @@
       });
     };
     return $(function() {
+      var windowWidth;
+      windowWidth = $(window).width();
       $('[data-toggle="offcanvas"]').each(function() {
         return $(this).bsOffcanvas();
       });
       $(window).on('resize', function() {
-        $('.navbar-offcanvas.in').each(function() {
-          return $(this).height('').removeClass('in');
-        });
-        $('.offcanvas-toggle').removeClass('is-open');
-        return $('body').removeClass('offcanvas-stop-scrolling');
+        if ($(window).width() !== windowWidth) {
+          $('.navbar-offcanvas.in').each(function() {
+            return $(this).height('').removeClass('in');
+          });
+          $('.offcanvas-toggle').removeClass('is-open');
+          $('body').removeClass('offcanvas-stop-scrolling');
+          windowWidth = $(window).width();
+          return true;
+        }
       });
       return $('.offcanvas-toggle').each(function() {
         return $(this).on('click', function(e) {
